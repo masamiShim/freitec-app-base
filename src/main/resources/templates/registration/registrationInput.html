@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>登録</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.2.4/jquery.min.js}"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="col-sm-offset-2 col-sm-10">
+		<h1>ユーザ登録画面</h1>
+	</div>
+	<div class="container col-sm-offset-2 col-sm-10">
+		<div th:if="${errors != null}" class="alert alert-danger" role="alert">
+			<!-- errorMessage Area -->
+			<label>入力に誤りがあります。</label>
+			<ul th:each="error : ${errors}" th:object="${error}">
+				<li th:text="*{defaultMessage}"></li>
+			</ul>
+			<!-- /errorMessage Area -->
+		</div>
+		<div>
+			<form class="form-horizontal" action="#"
+				th:action="@{/registration/confirm}" th:object="${form}"
+				method="POST">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">入力項目</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="loginId" class="col-sm-3 control-label">
+								<span class="label label-danger">必須</span> ログインID</label>
+							<div class="col-sm-9">
+								<input type="text" id="loginId" class="form-control"
+									th:field="*{loginId}" placeholder="loginId" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-3 control-label"> 
+								<span class="label label-danger">必須</span> パスワード
+							</label>
+							<div class="col-sm-9">
+								<input type="password" id="password" class="form-control"
+									th:field="*{password}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label
+								for="confirmation" class="col-sm-3 control-label">
+								<span class="label label-danger">必須</span> 
+								パスワード(確認)</label>
+							<div class="col-sm-9">
+								<input type="password" id="confirmation" class="form-control"
+									th:field="*{confirmation}" />
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary" name="param"
+							value="confirm" tabindex="0">確認</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

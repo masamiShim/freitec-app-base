@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layout">
+<head>
+<meta charset="utf-8" />
+<title>Error</title>
+</head>
+<body>
+<h1 th:text="${status} + ' ' + ${error}">connection is bad . sorrry back to home</h1>
+
+<p><a th:href="@{/}">Back to home</a></p>
+</body>
+</html>

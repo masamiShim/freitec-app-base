@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layout">
+<head>
+<title>トップ</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="layout-title">
+		<div class="col-sm-offset-2 col-sm-10">
+			<h1>トップ</h1>
+		</div>
+	</th:block>
+	<th:block layout:fragment="layout-content">
+		<div th:if="${informations != null and not #lists.isEmpty(informations)}">
+			<ul th:each="item : ${informations}" th:object="${item}">
+				<li>
+					<span th:text="*{startDate}"></span>
+					<span th:text="*{content}"></span>
+				
+				</li>
+			</ul>
+		</div>
+		<div th:if="${informations == null or #lists.isEmpty(informations)}">
+			お知らせはありません。
+		</div>
+	</th:block>
+</body>
+</html>

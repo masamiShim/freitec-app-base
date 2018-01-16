@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layout">
+<head>
+<title>登録</title>
+<meta charset="UTF-8" />
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#password").attr("type", "password");
+	});
+</script>
+</head>
+<body>
+	<th:block layout:fragment="layout-title">
+		<div class="col-sm-offset-2 col-sm-10">
+			<h1>登録完了画面</h1>
+		</div>
+	</th:block>
+	<th:block layout:fragment="layout-content">
+		<div class="col-sm-offset-2 col-sm-10">
+				<div>
+					<h2>登録が完了しました。以下のリンクをクリックして利用を開始してください。</h2>
+				</div>
+			<div class="col-sm-offset-1 col-sm-4">
+				<p>
+					<a th:href="@{/top}">トップページへ移動する</a>
+				</p>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

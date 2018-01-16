@@ -1,0 +1,32 @@
+spring:
+#datasource:
+#url: jdbc:mysql://localhost:3306/base_app
+#username: dev
+#password: dev
+#driver-class-name: com.mysql.jdbc.Driver
+#initialize: false
+
+#Tymeleaf Setting
+  thymeleaf:
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+    prefix: classpath:/templates/
+#O/RMapper Setting    
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+logging:
+  file: logfile.log
+  path: /
+  
+server: 
+  port: 8080

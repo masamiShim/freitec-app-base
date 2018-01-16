@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layout">
+<head>
+<title>test</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="layout-title">
+		<div class="col-sm-offset-2 col-sm-10">
+			<h1>見積一覧画面</h1>
+		</div>
+	</th:block>
+	<th:block layout:fragment="layout-content">
+		<div class="col-sm-offset-2 col-sm-10">
+			<form class="form-horizontal" action="#"
+				th:action="@{/estimate/index}" th:object="${form}" method="POST">
+				<div class="panel panel-primary">
+					<div class="panel-heading">検索条件</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="cust_name" class="col-sm-2 control-label">見積日</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" th:field="*{date}"
+									placeholder="name" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cust_email" class="col-sm-2 control-label">取引先(部分一致)</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" th:field="*{customerName}"
+									placeholder="example@example.com" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary" name="list" value="list">一覧</button>
+					</div>
+				</div>
+			</form>
+			<div class="table-responsive col-sm-12" style="height: 300px;">
+				<div th:if="${list != null and not #lists.isEmpty(list)}"
+					class="col-sm-12">
+					検索結果：<label th:text="${#lists.size(list)} + ' 件'">0</label>
+				</div>
+				<table class="table inverse table-striped table-condensed">
+					<thead style="background-color: black; color: white;">
+						<tr>
+							<td class="col-sm-1">#</td>
+							<td class="col-sm-1">見積日</td>
+							<td class="col-sm-2">見積番号</td>
+							<td class="col-sm-3">顧客名</td>
+							<td class="col-sm-3">タイトル</td>
+							<td class="col-sm-3">金額</td>
+							<td class="col-sm-3">詳細</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${list}" th:object="${item}">
+							<td><label th:text="*{id}">a</label></td>
+							<td><label th:text="*{date}">b</label></td>
+							<td><label th:text="*{estimateNo}">c</label></td>
+							<td><label th:text="*{customerName}">d</label></td>
+							<td><label th:text="*{title}">a</label></td>
+							<td><label th:text="*{amount}">b</label></td>
+							<td>nankabutoon</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>
