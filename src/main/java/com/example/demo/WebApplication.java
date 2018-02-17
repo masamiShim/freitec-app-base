@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -20,14 +19,4 @@ public class WebApplication {
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-	
-    @Bean
-    public DataSource datasource1(){
-        DataSource ds = new DataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/base_app");
-        ds.setUsername("dev");
-        ds.setPassword("dev");
-        return ds;
-    }
 }
