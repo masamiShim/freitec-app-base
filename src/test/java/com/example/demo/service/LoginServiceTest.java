@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.example.demo.AbstractTest;
-import com.example.demo.service.impl.LoginServiceImpl;
+import com.freitech.kotetsu.service.impl.LoginServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 

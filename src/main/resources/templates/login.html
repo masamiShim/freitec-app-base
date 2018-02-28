@@ -1,89 +1,85 @@
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layoutNoneHeader">
 <head>
 <meta charset="utf-8" />
 <title>ログイン</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet" />
-<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
-	th:src="@{/webjars/jquery/2.2.4/jquery.min.js}"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<div class="col-sm-offset-2 col-sm-10">
-		<h1>ログイン画面</h1>
-		<p class="col-sm-offset-1">ログインIDとパスワードを入力してください。</p>
-		<div th:if="${loginError}"
-			class="alert alert-danger col-sm-offset-1 col-sm-11" role="alert">
-			<!-- errorMessage Area -->
-			<p class="col-sm-offset-1">
-				<em>ログインIDまたはパスワードに誤りがあります。</em>
-			</p>
-			<!-- /errorMessage Area -->
-		</div>
-		<div th:if="${timeout}"
-			class="alert alert-danger col-sm-offset-1 col-sm-11" role="alert">
-			<!-- errorMessage Area -->
-			<p class="col-sm-offset-1">
-				<em>一定時間操作がなかった為、ログアウトしました。ご利用される場合は再度ログインして下さい。</em>
-			</p>
-			<!-- /errorMessage Area -->
-		</div>
-		<div class="container">
-			<div th:if="${success != null}"
-				class="alert alert-success col-sm-offset-2 col-sm-10" role="alert">
-				<!-- successMessage Area -->
-				<label th:text="${success}">success</label>
-				<!-- /successMessage Area -->
-			</div>
-			<div th:if="${errors != null}"
-				class="alert alert-danger col-sm-offset-2 col-sm-10" role="alert">
-				<!-- errorMessage Area -->
-				<label>入力に誤りがあります。</label>
-				<ul th:each="error : ${errors}" th:object="${error}">
-					<li th:text="*{defaultMessage}"></li>
-				</ul>
-				<!-- /errorMessage Area -->
-			</div>
-		</div>
-		
-	</div>
+	<th:block layout:fragment="layout-content">
+		<div class="col-md-5">
+			<div class="card p-4">
+				<div
+					class="card-header text-center text-uppercase h4 font-weight-light">
+					Login</div>
+				<div th:if="${loginError}" class="alert alert-danger row"
+					role="alert">
+					<!-- errorMessage Area -->
+					<p>
+						ログインIDまたはパスワードに誤りがあります。
+					</p>
+					<!-- /errorMessage Area -->
+				</div>
+				<div th:if="${timeout}"
+					class="alert alert-danger" role="alert">
+					<!-- errorMessage Area -->
+					<p class="col-sm-offset-1">
+						一定時間操作がなかった為、ログアウトしました。ご利用される場合は再度ログインして下さい。
+					</p>
+					<!-- /errorMessage Area -->
+				</div>
+				<div th:if="${errors != null}"
+					class="alert alert-danger" role="alert">
+					<!-- errorMessage Area -->
+					<label>入力に誤りがあります。</label>
+					<ul th:each="error : ${errors}" th:object="${error}">
+						<li th:text="*{defaultMessage}"></li>
+					</ul>
+					<!-- /errorMessage Area -->
+				</div>
 
-	<div class="col-sm-10 col-sm-offset-2 ">
-		<form class="form-horizontal" th:action="@{/login}" method="post">
-			<div class="form-group">
-				<p>
-					<label for="loginId" class="col-sm-2 control-label">ログインID</label>
-					<input class="col-sm-6 form-caontrol" type="text" id="loginId"
-						name="loginId" autofocus="autofocus" />
-				</p>
-			</div>
-			<div class="form-group">
-				<p>
-					<label for="password" class="col-sm-2 control-label">パスワード</label> <input
-						class="col-sm-6 form-caontrol" type="password" id="password"
-						name="password" />
-				</p>
-			</div>
-			<p class="col-sm-offset-1">
-				<input class="btn btn-primary" type="submit" value="Log in" />
-			</p>
-		</form>
-		<div class="col-sm-offset-1 col-sm-4">
-			<p>
-				<a th:href="@{/registration/input}">サインアップ</a>
-			</p>
-			<p>
-				<a th:href="@{/}">戻る</a>
-			</p>
-		</div>
-	</div>
+				<form th:action="@{/login}" method="post">
+					<!-- TODO: メッセージを出し分け -->
+					<div class="card-body py-5">
+						<div class="form-group">
+							<label class="form-control-label">LoginId</label> <input
+								class="form-control" type="text" id="loginId" name="loginId"
+								autofocus="autofocus" />
+						</div>
+						<div class="form-group">
+							<label class="form-control-label">Password</label> <input
+								class="form-control" type="password" id="password"
+								name="password" />
+						</div>
+						<!--/*  
+							<div class="custom-control custom-checkbox mt-4">
+								<input type="checkbox" class="custom-control-input" id="login">
+								<label class="custom-control-label" for="login">Check
+									this custom checkbox</label>
+							</div>
+*/-->
+					</div>
 
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary btn-block">ログイン</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<a class="btn btn-link" th:href="@{/registration/input}">サインアップ</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<a class="btn btn-link" th:href="@{/setting/forgotPassword}">パスワードを忘れた場合</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</th:block>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet"
+	th:href="@{/vendor/simple-line-icons/css/simple-line-icons.css}" />
+<link rel="stylesheet"
+	th:href="@{/vendor/font-awesome/css/fontawesome-all.min.css}" />
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<title layout:title-pattern="$DECORATOR_TITLE | $CONTENT_TITLE">example</title>
+</head>
+<body class="sidebar-fixed header-fixed">
+	<div class="page-wrapper">
+
+		<!-- header include-->
+		<div th:replace="/include/headerTmpl :: header"></div>
+		<!-- /header include-->
+
+		<div class="main-container">
+
+			<!-- sidebar include -->
+			<div th:replace="/include/sidebar:: sidebar"></div>
+			<!-- /sidebar include -->
+
+			<!-- content include-->
+			<div class="content">
+				<div th:replace="/include/errorArea:: errorArea"></div>
+				<th:block layout:fragment="layout-content" />
+			</div>
+			<!-- /content include-->
+		</div>
+		<!-- /main-container-->
+	</div>
+	<!-- footer include-->
+	<div th:replace="/include/footer :: footer"></div>
+	<!-- /footer include-->
+</body>
+</html>

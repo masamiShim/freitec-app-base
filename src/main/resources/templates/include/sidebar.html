@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div th:fragment="sidebar">
+		<div class="sidebar">
+			<nav class="sidebar-nav">
+				<ul class="nav">
+					<li class="nav-item"><a href="/logout"
+						class="nav-link active"> <i class="icon icon-speedometer"></i>
+							Logout
+					</a></li>
+					<li class="nav-title">Navigation</li>
+
+					<li class="nav-item"><a href="index.html"
+						class="nav-link active"> <i class="icon icon-speedometer"></i>
+							Dashboard
+					</a></li>
+
+					<li class="nav-item nav-dropdown"><a href="#"
+						class="nav-link nav-dropdown-toggle"> <i
+							class="icon icon-energy"></i>システム管理<i class="fa fa-caret-left"></i>
+					</a>
+
+						<ul class="nav-dropdown-items">
+							<li class="nav-item"><a href="/information/index"
+								class="nav-link"> <i class="icon icon-energy"></i> お知らせ一覧
+							</a></li>
+						</ul></li>
+					<li class="nav-item nav-dropdown"><a href="#"
+						class="nav-link nav-dropdown-toggle"> <i
+							class="icon icon-energy"></i>見積管理<i class="fa fa-caret-left"></i>
+					</a>
+						<ul class="nav-dropdown-items">
+
+							<li class="nav-item"><a href="cards.html" class="nav-link">
+									<i class="icon icon-energy"></i> Cards
+							</a></li>
+						</ul></li>
+					<li class="nav-title">区切りたければこれ</li>
+
+					<li class="nav-item nav-dropdown"><a href="#"
+						class="nav-link nav-dropdown-toggle"> <i
+							class="icon icon-energy"></i>受注管理<i class="fa fa-caret-left"></i>
+					</a>
+						<ul class="nav-dropdown-items">
+							<li class="nav-item"><a href="modals.html" class="nav-link">
+									<i class="icon icon-energy"></i> Modals
+							</a></li>
+
+							<li class="nav-item"><a href="tabs.html" class="nav-link">
+									<i class="icon icon-energy"></i> Tabs
+							</a></li>
+
+							<li class="nav-item"><a href="progress-bars.html"
+								class="nav-link"> <i class="icon icon-energy"></i> Progress
+									Bars
+							</a></li>
+
+							<li class="nav-item"><a href="widgets.html" class="nav-link">
+									<i class="icon icon-energy"></i> Widgets
+							</a></li>
+						</ul></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<!-- helper.html -->
+	<div th:fragment="input(view)">
+		<div th:object="${view}">
+			<div
+				th:classappend="${#fields.hasErrors('__*{name}__')}? 'has-error'">
+				<label th:for="*{name}" th:text="*{label}">label name</label>
+				<th:block th:replace="${input_element}" />
+				<input id="*{name}" type="password" th:feild="*{name}" praceholder="8文字以上" />
+				<span th:if="${#fields.hasErrors('__*{name}__')}"
+					th:errors="*{__*{name}__}">Error</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
