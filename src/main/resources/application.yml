@@ -14,9 +14,10 @@ spring:
     content-type: text/html
     cache: false
     prefix: classpath:/templates/
+
 #O/RMapper Setting    
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
       naming:
@@ -29,7 +30,15 @@ logging:
   path: /
   
 server: 
-  port: 8080  
+  port: 8081 
+
+com:
+  freitech:
+    model:
+      creator:
+        folder:
+          path: C:\dev\work\spring\workspace\freitech-app\src\main\java\com\freitech\kotetsu
+          basePackage: com.freitech.kotetsu
 
 api:
   exchange:

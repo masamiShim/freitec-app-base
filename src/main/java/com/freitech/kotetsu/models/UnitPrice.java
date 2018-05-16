@@ -7,10 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.freitech.kotetsu.models.customer.Customer;
+import com.freitech.kotetsu.models.item.Item;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,30 +26,31 @@ import lombok.ToString;
 @Data
 @Entity
 @ToString
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "Unit_Price")
-public class UnitPrice extends SecurityAuditor implements PriceBase{
-  
-  private static final long serialVersionUID = 1L;
- 
-  @Id
-  @Column(name="unitPriceId")
-  private Long id;
-  
-  @ManyToOne(fetch=FetchType.LAZY)
-  @JoinColumn(name="customerId")
-  private Customer customer;
+public class UnitPrice extends SecurityAuditor implements PriceBase {
 
-  @Column(name="identityName")
-  private String identityName;
-  
-  @NotNull
-  @Column(name="price")
-  private BigDecimal price;
+	private static final long serialVersionUID = 1L;
 
-  @NotNull
-  @Column(name="expired")
-  private LocalDate expired;
+	@Id
+	@Column(name = "unitPriceId")
+	private Long id;
+
+	@ManyToOne
+	private Item item;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Customer customer;
+
+	@Column(name = "identityName")
+	private String identityName;
+
+	@NotNull
+	@Column(name = "price")
+	private BigDecimal price;
+
+	@NotNull
+	@Column(name = "expired")
+	private LocalDate expired;
 
 }
-

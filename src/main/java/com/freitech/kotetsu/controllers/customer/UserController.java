@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.freitech.kotetsu.forms.customer.UserSearchForm;
 import com.freitech.kotetsu.models.User;
 import com.freitech.kotetsu.service.UserService;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller

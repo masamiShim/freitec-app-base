@@ -13,11 +13,11 @@ public enum Unit  implements EnumStringBase {
   KAI("13","回");
 
   public String code = "";
-  public String codeName = "";
+  public String name = "";
 
-  private Unit(final String code, final String codeName) {
+  private Unit(final String code, final String name) {
     this.code = code;
-    this.codeName = codeName;
+    this.name = name;
   }
 
   @Override

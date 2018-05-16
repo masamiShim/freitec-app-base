@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.freitech.kotetsu.models.customer.Customer;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

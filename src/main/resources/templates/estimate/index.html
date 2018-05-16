@@ -1,77 +1,154 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="include/layout">
+	layout:decorator="include/partial/list
+	">
 <head>
-<title>test</title>
+<title>見積一覧</title>
 <meta charset="UTF-8" />
 </head>
 <body>
-	<th:block layout:fragment="layout-title">
-		<div class="col-sm-offset-2 col-sm-10">
-			<h1>見積一覧画面</h1>
+	<th:block layout:fragment="searchCond">
+		<div class="row">
+			<a class="btn btn-primary" th:href="@{/estimate/input}">新規登録</a>
 		</div>
-	</th:block>
-	<th:block layout:fragment="layout-content">
-		<div class="col-sm-offset-2 col-sm-10">
-			<form class="form-horizontal" action="#"
-				th:action="@{/estimate/index}" th:object="${form}" method="POST">
-				<div class="panel panel-primary">
-					<div class="panel-heading">検索条件</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label for="cust_name" class="col-sm-2 control-label">見積日</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" th:field="*{date}"
-									placeholder="name" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="cust_email" class="col-sm-2 control-label">取引先(部分一致)</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" th:field="*{customerName}"
-									placeholder="example@example.com" />
-							</div>
+
+		<div class="x_panel">
+			<div class="x_title">
+				<h4>検索条件</h4>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<form class="form-horizontal form-label-left" novalidate
+					th:action="@{/estimate/index}" th:object="${cond}" method="POST">
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('no', '見積No', ~{::#no})">
+							<input id="no" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{no}"
+								placeholder="000123914" />
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-12">
-						<button type="submit" class="btn btn-primary" name="list" value="list">一覧</button>
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('dateFrom', '見積日From', ~{::#dateFrom})">
+							<input id="dateFrom" type="date"
+								class="form-control col-md-7 col-xs-12" th:field="*{dateFrom}"
+								placeholder="yyyy/mm/dd" />
+						</div>
 					</div>
-				</div>
-			</form>
-			<div class="table-responsive col-sm-12" style="height: 300px;">
-				<div th:if="${list != null and not #lists.isEmpty(list)}"
-					class="col-sm-12">
-					検索結果：<label th:text="${#lists.size(list)} + ' 件'">0</label>
-				</div>
-				<table class="table inverse table-striped table-condensed">
-					<thead style="background-color: black; color: white;">
-						<tr>
-							<td class="col-sm-1">#</td>
-							<td class="col-sm-1">見積日</td>
-							<td class="col-sm-2">見積番号</td>
-							<td class="col-sm-3">顧客名</td>
-							<td class="col-sm-3">タイトル</td>
-							<td class="col-sm-3">金額</td>
-							<td class="col-sm-3">詳細</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="item : ${list}" th:object="${item}">
-							<td><label th:text="*{id}">a</label></td>
-							<td><label th:text="*{date}">b</label></td>
-							<td><label th:text="*{estimateNo}">c</label></td>
-							<td><label th:text="*{customerName}">d</label></td>
-							<td><label th:text="*{title}">a</label></td>
-							<td><label th:text="*{amount}">b</label></td>
-							<td>nankabutoon</td>
-						</tr>
-					</tbody>
-				</table>
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('dateTo', '見積日To', ~{::#dateTo})">
+							<input id="dateTo" type="date"
+								class="form-control col-md-7 col-xs-12" th:field="*{dateTo}"
+								placeholder="yyyy/mm/dd" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('customerNo', '顧客No', ~{::#customerNo})">
+							<input id="customerNo" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{customerNo}"
+								placeholder="12345678" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('staffName', '担当者名', ~{::#staffName})">
+							<input id="staffName" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{staffName}"
+								placeholder="テスト太郎" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<button type="submit" class="btn btn-success" name="list"
+
+								value="list">一覧</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
+	</th:block>
+	<!-- table　-->
+	<th:block layout:fragment="detail">
+		<div class="x_panel">
+			<div class="x_title">
+				<h5>
+					検索結果： <label
+						th:if="${result != null and not #lists.isEmpty(result)}"
+						th:text="${#lists.size(result)} + ' 件'">0</label> <label
+						th:if="${result == null or #lists.isEmpty(result)}">- 件</label>
+				</h5>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<p th:if="${result == null or #lists.isEmpty(result)}"
+					class="text-muted font-13 m-b-30">検索結果が存在しません。</p>
+				<div th:if="${result != null and not #lists.isEmpty(result)}"
+					id="datatable-buttons_wrapper"
+					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+					<table id="datatable-buttons"
+						class="table table-striped table-bordered dataTable no-footer dtr-inline"
+						role="grid" aria-describedby="datatable-buttons_info">
+						<thead>
+							<tr role="row">
+								<th class="sorting_asc" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="#: activate to sort column descending"
+									aria-sort="ascending">#</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="見積日: activate to sort column ascending">見積日</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="見積番号: activate to sort column ascending">見積番号</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="タイトル: activate to sort column ascending">タイトル</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="顧客番号: activate to sort column ascending">顧客番号</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="担当者: activate to sort column ascending">担当者</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="item, stat : ${result}" th:object="${item}">
+								<tr role="row" th:class="${stat.even} ? 'even' : 'odd'">
+									<td class="sorting_1" tabindex="0"><label th:text="*{id}">a</label></td>
+									<td><label th:text="*{date}">b</label></td>
+									<td><label th:text="*{title}">c</label></td>
+									<td><label th:text="*{no}">d</label></td>
+									<td><label th:text="*{customer.id}">e</label></td>
+									<td><label th:text="*{staff.firstName}">f</label></td>
+									<td><a class="btn btn-round btn-info" title="照会"
+										th:href="@{'/estimate/detail/' + *{id}}"><i
+											class="fa fa-file-text-o"></i></a> <a
+										class="btn btn-round btn-primary" title="編集"
+										th:href="@{'/estimate/input/' + *{id}}"><i
+											class="fa fa-pencil-square-o"></i></a> <a
+										class="btn btn-danger btn-round" title="削除"
+										data-toggle="modal" data-target=".delete-confirm"><i
+											class="fa fa-trash-o"></i></a>
+										<div
+											th:replace="/partials/deleteModal::delete(~{::.del-confirm})">
+											<a class="btn btn-danger del-confirm"
+												th:href="@{'/estimate/delete/' + *{id}}">削除</a>
+										</div></td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
 	</th:block>
 </body>
 </html>

@@ -1,122 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8" />
+<meta charset="UTF-8" />
 </head>
 <body>
-	<div th:fragment="header">
-	    <nav class="navbar page-header">
-        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
-            <i class="fa fa-bars"></i>
-        </a>
-
-        <a class="navbar-brand" href="#">
-            <img th:src="@{/imgs/logo.png}" alt="logo"/>
-        </a>
-
-        <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
-            <i class="fa fa-bars"></i>
-        </a>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
-
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-envelope-open"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img  th:src="@{/imgs/avatar-1.png}" class="avatar avatar-sm" alt="logo"/>
-                    <span class="small ml-1 d-md-down-none">John Smith</span>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header">Account</div>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-user"></i> Profile
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-envelope"></i> Messages
-                    </a>
-
-                    <div class="dropdown-header">Settings</div>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-bell"></i> Notifications
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-wrench"></i> Settings
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-lock"></i> Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-	<!--/*  
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-						aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/index">お知らせ</a>
-				</div>
-
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li id="system" class="active"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown" role="button"
-							aria-haspopup="true" aria-expanded="false">システム管理<span
-								class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="/system/information/index">お知らせ一覧</a></li>
-									<li><a href="/system/information/input">お知らせ登録</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="#">なんか</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="#">もういっちょ</a></li>
-								</ul>
-						</li>
-						<li><a href="#">Link</a></li>
-						<li><a href="/users/index">ユーザ</a></li>
-						<li id="customers" class="dropdown"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown" role="button"
-							aria-haspopup="true" aria-expanded="false">取引先<span
-								class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/customers/index">照会</a></li>
-								<li><a href="/customers/input">新規登録</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul></li>
-						<li><a href="/logout">ログアウト</a></li>
-					</ul>
-				</div>
+	<div class="nav_menu" th:fragment="header">
+		<nav>
+			<div class="nav toggle">
+				<a id="menu_toggle"><i class="fa fa-bars"></i></a>
 			</div>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class=""><a href="javascript:;"
+					class="user-profile dropdown-toggle" data-toggle="dropdown"
+					aria-expanded="false"> <img th:src="@{/images/img.jpg}" alt="" />John
+						Doe <span class=" fa fa-angle-down"></span>
+				</a>
+					<ul class="dropdown-menu dropdown-usermenu pull-right">
+						<li><a href="javascript:;"> Profile</a></li>
+						<li><a href="javascript:;"> <span
+								class="badge bg-red pull-right">50%</span> <span>Settings</span>
+						</a></li>
+						<li><a href="javascript:;">Help</a></li>
+						<li><a href="login.html"><i
+								class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+					</ul></li>
+
+				<li role="presentation" class="dropdown"><a href="javascript:;"
+					class="dropdown-toggle info-number" data-toggle="dropdown"
+					aria-expanded="false"> <i class="fa fa-envelope-o"></i> <span
+						class="badge bg-green">6</span>
+				</a>
+					<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+						role="menu">
+						<li><a> <span class="image"><img th:src="@{images/img.jpg}"
+									alt="Profile Image" /></span> <span> <span>John
+										Smith</span> <span class="time">3 mins ago</span>
+							</span> <span class="message"> Film festivals used to be
+									do-or-die moments for movie makers. They were where... </span>
+						</a></li>
+						<li><a> <span class="image"><img
+									th:src="@{images/img.jpg}" alt="Profile Image" /></span> <span> <span>John
+										Smith</span> <span class="time">3 mins ago</span>
+							</span> <span class="message"> Film festivals used to be
+									do-or-die moments for movie makers. They were where... </span>
+						</a></li>
+						<li><a> <span class="image"><img
+									th:src="@{images/img.jpg}" alt="Profile Image" /></span> <span> <span>John
+										Smith</span> <span class="time">3 mins ago</span>
+							</span> <span class="message"> Film festivals used to be
+									do-or-die moments for movie makers. They were where... </span>
+						</a></li>
+						<li><a> <span class="image"><img
+									th:src="@{images/img.jpg}" alt="Profile Image" /></span> <span> <span>John
+										Smith</span> <span class="time">3 mins ago</span>
+							</span> <span class="message"> Film festivals used to be
+									do-or-die moments for movie makers. They were where... </span>
+						</a></li>
+						<li>
+							<div class="text-center">
+								<a> <strong>See All Alerts</strong> <i
+									class="fa fa-angle-right"></i>
+								</a>
+							</div>
+						</li>
+					</ul></li>
+			</ul>
 		</nav>
-		*/-->
 	</div>
 </body>
 </html>

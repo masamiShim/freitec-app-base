@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div th:fragment="messageArea">
+		<!--/* successMessage Area */-->
+		<div th:if="${success != null}"
+			class="row alert alert-success alert-dismissible fade in" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<label th:text="${success}">success</label>
+		</div>
+		<!-- /successMessage Area -->
+		<div th:if="${errors != null}"
+			class="alert alert-dismissible alert-danger">
+			<!-- errorMessage Area -->
+			<label>入力に誤りがあります。</label>
+			<ul th:each="error : ${errors}" th:object="${error}">
+				<li th:text="*{defaultMessage}"></li>
+			</ul>
+			<!-- /errorMessage Area -->
+		</div>
+	</div>
+</body>
+</html>

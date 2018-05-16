@@ -1,5 +1,8 @@
 package com.freitech.kotetsu.controllers.system.information;
 
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +12,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.freitech.kotetsu.controllers.SpringControllerBase2;
-import com.freitech.kotetsu.forms.system.information.InformationForm;
-import com.freitech.kotetsu.forms.system.information.InformationSearchForm;
-import com.freitech.kotetsu.models.Information;
+import com.freitech.kotetsu.config.setting.Path;
+import com.freitech.kotetsu.config.setting.PathBuilder;
+import com.freitech.kotetsu.controllers.commons.SpringControllerBase2;
+import com.freitech.kotetsu.db.repos.InformationRepository;
+import com.freitech.kotetsu.models.information.Information;
 import com.freitech.kotetsu.service.InformationService;
 
 @Controller
@@ -25,55 +31,82 @@ public class InformationController extends SpringControllerBase2<Information> {
 	@Autowired
 	private InformationService informationService;
 
-	@ModelAttribute(value = "cond")
-	public InformationSearchForm searchCond() {
-		return new InformationSearchForm();
+	@Autowired
+	private InformationRepository informationReopsitory;
+
+	@ModelAttribute(name = FORM_PARAM)
+	public Information getForm() {
+		return new Information();
 	}
 
+	@GetMapping(value = {"/input", "/input/{id}"})
+	public String input(@PathVariable(required = false) Optional<Long> id, Model model) {
+		id.ifPresent(i -> {
+			informationReopsitory.findById(i).ifPresent(info -> {
+				model.addAttribute(FORM_PARAM, info);
+			});
 
-	@ModelAttribute(name = "form")
-	public InformationForm getForm() {
-		return new InformationForm();
+		});
+
+		return new PathBuilder().join(Path.INFORMATION).input().build();
 	}
 
-	@ModelAttribute(name = "inputForm")
-	public InformationSearchForm form() {
-		return new InformationSearchForm();
-	}
-	
-	@GetMapping(path = "/input")
-	public String input() {
-		return "/system/information/input";
-	}
+	@PostMapping(value = {"/input", "/input/{id}"})
+	public String confirm(@Valid @ModelAttribute("form") Information form, BindingResult error,
+	                      @PathVariable(required = false) Optional<Long> id, Model model) {
 
-	@PostMapping(path = "/confirm")
-	public String confirm(@Valid InformationForm form, BindingResult error, Model model) {
-		model.addAttribute("form", form);
+		model.addAttribute(FORM_PARAM, form);
 		// エラーあればさよなら
 		if (error.hasErrors()) {
-			return "/system/information/input";
+			return new PathBuilder().join(Path.INFORMATION).input().build();
 		}
-		return "/system/information/confirm";
+		return new PathBuilder().join(Path.INFORMATION).confirm().build();
 	}
 
-	@PostMapping(path = "/complete")
-	public String complete(@Valid InformationForm form, BindingResult result, Model model) {
-		model.addAttribute("form", form);
+	@PostMapping(value = {"/complete", "/complete/{id}"})
+	@Transactional
+	public String complete(@Valid @ModelAttribute("form") Information form, BindingResult result,
+	                       @PathVariable(required = false) Optional<Long> id, Model model,
+	                       RedirectAttributes attrs) {
 		// エラーあればさよなら
 		if (result.hasErrors()) {
-			return "/system/information/input";
-		}
-		if (informationService.regist(form).isPresent()) {
-			model.addAttribute("success", "登録しました。");
-			return "/system/information/input";
-		} else {
-			result.addError(new ObjectError("saveError", "登録に失敗しました。再度お試しください。"));
 			model.addAttribute("form", form);
-			return "/system/information/input";
+			return new PathBuilder().join(Path.INFORMATION).input().build();
 		}
+
+		Information registed = informationService.regist(form);
+		if (null == registed) {
+			result.addError(new ObjectError("error", "登録/更新に失敗しました。再度お試しください。"));
+			return new PathBuilder().join(Path.INFORMATION).input().build();
+		}
+
+		model.addAttribute("success", "登録/更新しました。");
+		return new PathBuilder().redirect().join(Path.INFORMATION).input().join(registed.getId()).build();
 	}
 
-	protected void load() {
-		m = Information.class;
+	@GetMapping(value = {"/detail/{id}"})
+	public String detail(@PathVariable(required = true) Optional<Long> id, Model model) {
+
+		id.ifPresent(i -> {
+			informationReopsitory.findById(i).ifPresent(info -> {
+				model.addAttribute(FORM_PARAM, info);
+			});
+		});
+		return new PathBuilder().join(Path.INFORMATION).detial().build();
 	}
+
+	@GetMapping(value = {"/delete/{id}"})
+	public String delete(@PathVariable(required = true) Optional<Long> id, Model model,
+	                     RedirectAttributes attrs) {
+		id.ifPresent(i -> {
+			if (informationService.delete(i)) {
+				attrs.addAttribute(SUCCESS_MESSAGE, "削除しました。");
+			}
+			else {
+				attrs.addAttribute("error", "処理に失敗しました。");
+			}
+		});
+		return new PathBuilder().redirect().join(Path.INFORMATION).index().build();
+	}
+
 }

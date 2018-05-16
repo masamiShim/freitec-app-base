@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
-import com.freitech.kotetsu.models.EstimateDetail;
+import com.freitech.kotetsu.models.estimate.EstimateDetail;
 
 import lombok.Data;
 import lombok.ToString;

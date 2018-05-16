@@ -1,5 +1,6 @@
 package com.freitech.kotetsu.controllers.system.information;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,41 +12,54 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.freitech.kotetsu.controllers.SpringControllerBase2;
+import com.freitech.kotetsu.config.annotations.ColSize;
+import com.freitech.kotetsu.config.annotations.ViewDef;
+import com.freitech.kotetsu.config.setting.Path;
+import com.freitech.kotetsu.controllers.commons.ListControllerBase;
 import com.freitech.kotetsu.forms.system.information.InformationSearchForm;
+import com.freitech.kotetsu.models.information.InformationListModel;
 import com.freitech.kotetsu.service.InformationService;
 
 @Controller
 @RequestMapping("/information")
-public class InformationListController extends SpringControllerBase2<InformationSearchForm> {
+@ViewDef(layout = ColSize.ONE, title = "お知らせ一覧")
+public class InformationListController extends ListControllerBase<InformationSearchForm> {
 
 	@Autowired
 	private InformationService informationService;
 
-	@ModelAttribute(value = "cond")
-	public InformationSearchForm searchCond() {
-		return new InformationSearchForm();
+	@Autowired
+	private HttpSession session;
+
+	private InformationListModel listModel;
+
+	@GetMapping(path = INDEX)
+	public String index(Model model) {
+
+		InformationSearchForm cond = searchCond();
+		model.addAttribute("result", listModel.of(informationService.getInformationList(cond)));
+		model.addAttribute("cond", cond);
+
+		return Path.INFORMATION.getPath().concat(INDEX);
 	}
 
-	@GetMapping(path = "/index")
-	public String index() {
-		return "/information/index";
-	}
-
-	@PostMapping(path = "/index")
-	public String list(@Valid @ModelAttribute("cond") InformationSearchForm cond, BindingResult error, Model model) {
+	@PostMapping(path = INDEX)
+	public String list(@Valid @ModelAttribute("cond") InformationSearchForm cond, BindingResult error,
+	                   Model model) {
 		// エラーあればさよなら
 		if (error.hasErrors()) {
 			createBindingErrorView(error, model);
-			return "/information/index";
+			return Path.INFORMATION.getPath().concat(INDEX);
 		}
 
-		model.addAttribute("result", informationService.getInformationList());
+		model.addAttribute("cond", cond);
+		session.setAttribute("cond", cond);
+
 		// TODO: 検索条件が必要なら
-		return "/information/index";
+		return Path.INFORMATION.getPath().concat(INDEX);
 	}
 
-	protected void load() {
-		m = InformationSearchForm.class;
+	protected InformationSearchForm load() {
+		return new InformationSearchForm();
 	}
 }

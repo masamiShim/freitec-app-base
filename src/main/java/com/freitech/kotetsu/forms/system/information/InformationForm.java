@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.freitech.kotetsu.models.Information;
+import com.freitech.kotetsu.models.information.Information;
 
 import lombok.Data;
 

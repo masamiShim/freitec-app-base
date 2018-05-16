@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.freitech.kotetsu.controllers.commons.SpringControllerBase;
+
 @Controller
 @RequestMapping("users")
 public class CustomerController2 extends SpringControllerBase{

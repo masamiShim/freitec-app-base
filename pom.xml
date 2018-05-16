@@ -22,6 +22,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
+		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
+		<thymeleaf-extras-springsecurity4.version>3.0.0.RELEASE</thymeleaf-extras-springsecurity4.version>
+		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
+		<thymeleaf-extras-java8time.version>3.0.0.RELEASE</thymeleaf-extras-java8time.version>
+		<scala.version>2.12.4</scala.version>
 	</properties>
 
 	<dependencies>
@@ -57,10 +63,10 @@
 		</dependency>
 		<!-- hibernate-core 読み込まないとentitymanagerFactory云々って言われて起動できなかった -->
 		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
 		</dependency>
-	 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -83,13 +89,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-	
+
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 		</dependency>
-		
+
 		<!-- webJars -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -113,7 +119,6 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -128,6 +133,32 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.scala-lang</groupId> -->
+<!-- 			<artifactId>scala-library</artifactId> -->
+<!-- 			<version>${scala.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-artemis</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -135,10 +166,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				 <configuration>
-		          <skipTests>true</skipTests>
-        		</configuration>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
 			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>net.alchim31.maven</groupId> -->
+<!-- 				<artifactId>scala-maven-plugin</artifactId> -->
+<!-- 				<version>3.2.0</version> -->
+<!-- 				<configuration> -->
+<!-- 					<scalaVersion>${scala.version}</scalaVersion> -->
+<!-- 					<args> -->
+<!-- 						<arg>-Xlint</arg> -->
+<!-- 						<arg>-unchecked</arg> -->
+<!-- 						<arg>-deprecation</arg> -->
+<!-- 						<arg>-feature</arg> -->
+<!-- 					</args> -->
+<!-- 					<skipTests>true</skipTests> -->
+<!-- 					<recompileMode>incremental</recompileMode> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 

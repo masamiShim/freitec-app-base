@@ -20,6 +20,12 @@ public class ErrorController {
     return "error/404";
   }
 
+  @GetMapping(value = "/405")
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  public String unSupportedMethod() {
+    return "error/404";
+  }
+
   @GetMapping(value = "/500")
   @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
   public String internalServerError() {

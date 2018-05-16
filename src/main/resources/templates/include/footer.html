@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8" />
+<meta charset="UTF-8" />
 </head>
 <body>
-	<div th:fragment="footer">
-		<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-		<script th:src="@{/vendor/popper.js/popper.min.js}"></script>
-		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-		<script th:src="@{/vendor/chart.js/chart.min.js}"></script>
-		<script th:src="@{/js/carbon.js}"></script>
-		<script th:src="@{/js/demo.js}"></script>
-	</div>
+	<footer th:fragment="footer">
+		<div class="pull-right">
+			Gentelella - Bootstrap Admin Template by <a
+				href="https://colorlib.com">Colorlib</a>
+		</div>
+		<div class="clearfix"></div>
+	</footer>
 </body>
 </html>

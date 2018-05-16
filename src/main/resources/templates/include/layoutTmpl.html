@@ -5,37 +5,83 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<link rel="stylesheet"
-	th:href="@{/vendor/simple-line-icons/css/simple-line-icons.css}" />
-<link rel="stylesheet"
-	th:href="@{/vendor/font-awesome/css/fontawesome-all.min.css}" />
-<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<!-- Bootstrap -->
+<link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<!-- Font Awesome -->
+<link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}"
+	rel="stylesheet" />
+<!-- NProgress -->
+<link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet" />
+<!-- Animate.css -->
+<link th:href="@{/vendors/animate.css/animate.min.css}" rel="stylesheet" />
+
+<!-- Custom Theme Style -->
+<link th:href="@{/build/css/custom.css}" rel="stylesheet" />
+
 <title layout:title-pattern="$DECORATOR_TITLE | $CONTENT_TITLE">example</title>
 </head>
-<body class="sidebar-fixed header-fixed">
-	<div class="page-wrapper">
-
-		<!-- header include-->
-		<div th:replace="/include/headerTmpl :: header"></div>
-		<!-- /header include-->
-
-		<div class="main-container">
-
-			<!-- sidebar include -->
-			<div th:replace="/include/sidebar:: sidebar"></div>
-			<!-- /sidebar include -->
-
-			<!-- content include-->
-			<div class="content">
-				<div th:replace="/include/errorArea:: errorArea"></div>
-				<th:block layout:fragment="layout-content" />
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<!-- sidebar include -->
+				<div class="left_col scroll-view">
+					<div th:replace="/include/sidebar:: sidebar"></div>
+					<!-- /sidebar include -->
+				</div>
 			</div>
-			<!-- /content include-->
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div th:replace="/include/headerTmpl :: header"></div>
+			</div>
+			<!-- /top navigation -->
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<!-- top tiles -->
+				<div th:replace="/include/messageArea:: messageArea"></div>
+				<th:block layout:fragment="layout-content" />
+				<!-- /page content-->
+			</div>
+			<div th:replace="/include/footer :: footer"></div>
+			<!-- /footer include-->
 		</div>
-		<!-- /main-container-->
+		<!-- main_container-->
 	</div>
-	<!-- footer include-->
-	<div th:replace="/include/footer :: footer"></div>
-	<!-- /footer include-->
+	<!-- /container body-->
+	<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+	<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}"></script>
+	<script
+		th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+	<!-- iCheck -->
+	<script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
+	<!-- DateJS -->
+	<script th:src="@{/vendors/DateJS/build/date.js}"></script>
+	<!-- JQVMap -->
+	<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}"></script>
+	<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
+	<script
+		th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
+	<script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
+    <script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
+    <script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
+    <script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
+    <script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script th:src="@{/build/js/custom.min.js}"></script>
+
 </body>
 </html>

@@ -7,78 +7,68 @@
 </head>
 <body>
 	<th:block layout:fragment="layout-content">
-		<div class="col-md-5">
-			<div class="card p-4">
-				<div
-					class="card-header text-center text-uppercase h4 font-weight-light">
-					Login</div>
-				<div th:if="${loginError}" class="alert alert-danger row"
-					role="alert">
-					<!-- errorMessage Area -->
-					<p>
-						ログインIDまたはパスワードに誤りがあります。
-					</p>
-					<!-- /errorMessage Area -->
-				</div>
-				<div th:if="${timeout}"
-					class="alert alert-danger" role="alert">
-					<!-- errorMessage Area -->
-					<p class="col-sm-offset-1">
-						一定時間操作がなかった為、ログアウトしました。ご利用される場合は再度ログインして下さい。
-					</p>
-					<!-- /errorMessage Area -->
-				</div>
-				<div th:if="${errors != null}"
-					class="alert alert-danger" role="alert">
-					<!-- errorMessage Area -->
-					<label>入力に誤りがあります。</label>
-					<ul th:each="error : ${errors}" th:object="${error}">
-						<li th:text="*{defaultMessage}"></li>
-					</ul>
-					<!-- /errorMessage Area -->
-				</div>
 
+		<div class="animate form login_form">
+			<div
+				class="card-header text-center text-uppercase h4 font-weight-light">
+				ログイン</div>
+			<section class="login_content">
 				<form th:action="@{/login}" method="post">
+					<h1>Login Form</h1>
 					<!-- TODO: メッセージを出し分け -->
-					<div class="card-body py-5">
-						<div class="form-group">
-							<label class="form-control-label">LoginId</label> <input
-								class="form-control" type="text" id="loginId" name="loginId"
-								autofocus="autofocus" />
-						</div>
-						<div class="form-group">
-							<label class="form-control-label">Password</label> <input
-								class="form-control" type="password" id="password"
-								name="password" />
-						</div>
-						<!--/*  
-							<div class="custom-control custom-checkbox mt-4">
-								<input type="checkbox" class="custom-control-input" id="login">
-								<label class="custom-control-label" for="login">Check
-									this custom checkbox</label>
-							</div>
-*/-->
+					<div th:if="${loginError}" class="alert alert-danger row"
+						role="alert">
+						<!-- errorMessage Area -->
+						<p>ログインIDまたはパスワードに誤りがあります。</p>
+						<!-- /errorMessage Area -->
 					</div>
+					<div th:if="${timeout}" class="alert alert-danger" role="alert">
+						<!-- errorMessage Area -->
+						<p class="col-sm-offset-1">
+							一定時間操作がなかった為、ログアウトしました。ご利用される場合は再度ログインして下さい。</p>
+						<!-- /errorMessage Area -->
+					</div>
+					<div th:if="${errors != null}" class="alert alert-danger"
+						role="alert">
+						<!-- errorMessage Area -->
+						<label>入力に誤りがあります。</label>
+						<ul th:each="error : ${errors}" th:object="${error}">
+							<li th:text="*{defaultMessage}"></li>
+						</ul>
+						<!-- /errorMessage Area -->
+					</div>
+					<div>
+						<input id="loginId" name="loginId" type="text"
+							class="form-control" autofocus="autofocus" required=""
+							placeholder="Input Username" />
+						<div>
+							<input class="form-control" type="password" id="password"
+								name="password" placeholder="Input Password" required="" />
+						</div>
+						<div>
+							<button type="submit" class="btn btn-default submit">ログイン</button>
+							<a class="reset_pass" th:href="@{/setting/forgotPassword}">パスワードを忘れた場合</a>
+						</div>
+						<div class="clearfix"></div>
+						<div class="separator">
+							<p class="change_link">
+								New to Site? <a class="btn btn-link"
+									th:href="@{/registration/input}">サインアップ</a>
+							</p>
+							<div class="clearfix"></div>
+							<br />
+							<div>
+								<h1>
+									<i class="fa fa-rocket"></i> Gentelella Alela!
+								</h1>
+								<p>©2016 All Rights Reserved. Gentelella Alela! is a
+									Bootstrap 3 template. Privacy and Terms</p>
+							</div>
 
-					<div class="card-footer">
-						<div class="row">
-							<div class="col-12">
-								<button type="submit" class="btn btn-primary btn-block">ログイン</button>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<a class="btn btn-link" th:href="@{/registration/input}">サインアップ</a>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<a class="btn btn-link" th:href="@{/setting/forgotPassword}">パスワードを忘れた場合</a>
 						</div>
 					</div>
 				</form>
-			</div>
+			</section>
 		</div>
 	</th:block>
 </body>

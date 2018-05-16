@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div th:fragment="model(readonly)">
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('startDate', '開始日', ~{::#startDate})">
+				<input id="startDate" type="date" required
+					class="form-control col-md-7 col-xs-12" th:field="*{startDate}"
+					th:attr="readonly='__${readonly}__'" placeholder="yyyy/mm/dd" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('endDate', '終了日', ~{::#endDate})">
+				<input id="endDate" type="date"
+					class="form-control col-md-7 col-xs-12" th:field="*{endDate}"
+					th:attr="readonly='__${readonly}__'" placeholder="yyyy/mm/dd" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('content', '内容', ~{::#content})">
+				<input id="content" type="text"
+					class="form-control col-md-7 col-xs-12" th:field="*{content}"
+					th:attr="readonly='__${readonly}__'" placeholder="〇月〇日～〇月〇日は営業強化月間" />
+			</div>
+		</div>
+	</div>
+</body>

@@ -102,11 +102,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
               , "/logout"
               , "/registration/**"
               , "/webjars/**"
-              , "/vendor/**"
+              , "/build/**"
+              , "/vendors/**"
               , "/css/**"
               , "/js/**"
               , "/img/**"
-              , "/imgs/**")
+              , "/images/**")
           .permitAll()
           // その他のリクエストは認証が必要
           .anyRequest().authenticated();

@@ -18,8 +18,8 @@ public class EstimateSearchForm {
   @Size(max = 50)
   String staffName;
 
-  LocalDate estimateDateFrom;
+  LocalDate dateFrom;
 
-  LocalDate estimateDateTo;
+  LocalDate dateTo;
 
 }

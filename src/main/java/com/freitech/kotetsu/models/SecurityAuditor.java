@@ -16,6 +16,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -38,6 +39,7 @@ public abstract class SecurityAuditor implements Serializable {
 
 	@CreatedDate
 	@Column(name = "Created")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDateTime created;
 
 	@LastModifiedBy
@@ -46,12 +48,14 @@ public abstract class SecurityAuditor implements Serializable {
 
 	@LastModifiedDate
 	@Column(name = "Modified")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDateTime modified;
 
 	@Column(name = "DeletedBy")
 	protected String deletedBy;
 
 	@Column(name = "Deleted")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDateTime deleted;
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/partial/regist">
+<head>
+<title>登録</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="regist">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					登録内容<small>参照</small>
+				</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<form class="form-horizontal form-label-left" th:object="${form}">
+					<div th:replace="/information/model :: model(true)	"></div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<a class="btn btn-default" th:href="@{'/information/index'}">一覧へ</a>
+							<a class="btn btn-primary"
+								th:href="@{'/information/input/' + *{id}}">編集</a>
+							<button type="button" class="btn btn-danger" data-toggle="modal"
+								data-target=".delete-confirm">削除</button>
+							<div
+								th:replace="/partials/deleteModal::delete(~{::#del-confirm})">
+								<a id="del-confirm" class="btn btn-danger"
+									th:href="@{'/information/delete/' + *{id}}">削除</a>
+							</div>
+
+
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layoutTmpl">
+<head>
+<title layout:title-pattern="$DECORATOR_TITLE | $CONTENT_TITLE"></title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="layout-content">
+		<div class="page-title">
+			<div class="title_left">
+				<h3>お知らせ一覧</h3>
+			</div>
+			<div class="title_right"></div>
+		</div>
+		<div class="clearfix"></div>
+		<!-- input　-->
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<th:block layout:fragment="regist" />
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>
