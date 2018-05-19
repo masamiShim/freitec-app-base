@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/partial/regist">
+<head>
+<title>登録</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="regist">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					登録内容<small>確認</small>
+				</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<form class="form-horizontal form-label-left" novalidate
+					th:action="@{'/master/item/complete/' + ${form.id != null ? form.id : ''}}"
+					th:object="${form}" method="POST">
+					<div th:replace="/master/item/model :: model(true)	"></div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<button type="submit" class="btn btn-success">登録</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

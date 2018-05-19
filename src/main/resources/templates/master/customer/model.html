@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div th:fragment="model(readonly)">
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('customerNo', '企業番号', ~{::#customerNo})">
+				<input id="customerNo" type="text" required
+					class="form-control col-md-7 col-xs-12" th:field="*{customerNo}"
+					th:attr="readonly='__${readonly}__'" placeholder="000001" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('corpName', '企業名', ~{::#corpName})">
+				<input id="corpName" type="text" class="form-control col-md-7 col-xs-12"
+					th:field="*{corpName}" th:attr="readonly='__${readonly}__'"
+					placeholder="てすと株式会社" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('corpDispName', '企業表示名', ~{::#corpDispName})">
+				<input id="corpDispName" type="text" class="form-control col-md-7 col-xs-12"
+					th:field="*{corpDispName}" th:attr="readonly='__${readonly}__'"
+					placeholder="てすと" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('honorific', '敬称', ~{::#honorific})">
+				<input id="honorific" type="text" class="form-control col-md-7 col-xs-12"
+					th:field="*{honorific}" th:attr="readonly='__${readonly}__'"
+					placeholder="御中" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('cutoffAfter', '請求月', ~{::#cutoffAfter})">
+				<input id="cutoffAfter" type="number" class="form-control col-md-7 col-xs-12"
+					th:field="*{cutoffAfter}" th:attr="readonly='__${readonly}__'"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('cutoffDays', '請求日', ~{::#cutoffDays})">
+				<input id="cutoffAfter" type="number" class="form-control col-md-7 col-xs-12"
+					th:field="*{cutoffAfter}" th:attr="readonly='__${readonly}__'"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('type', '商品分類', ~{::#type})">
+				<select id="type" class="form-control col-md-7 col-xs-12"
+					th:field="*{type}" th:attr="readonly='__${readonly}__'">
+					<option th:each="type : ${types}" th:value="${type}"
+						th:text="${type.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('unit', '単位', ~{::#unit})">
+				<select id="unit" class="form-control col-md-7 col-xs-12"
+					th:field="*{unit}" th:attr="readonly='__${readonly}__'">
+					<option th:each="unit : ${units}" th:value="${unit}"
+						th:text="${unit.name}"></option>
+				</select>
+			</div>
+		</div>
+	</div>
+</body>

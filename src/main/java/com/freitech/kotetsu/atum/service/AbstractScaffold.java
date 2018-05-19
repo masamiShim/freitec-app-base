@@ -3,6 +3,7 @@ package com.freitech.kotetsu.atum.service;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.freitech.kotetsu.atum.ModelItemList;
+import com.freitech.kotetsu.atum.scaffolds.service.Scaffold;
 
 public abstract class AbstractScaffold implements Scaffold{
 
