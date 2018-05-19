@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.freitech.kotetsu.atum.ModelItemList;
+import com.freitech.kotetsu.atum.scaffolds.service.Scaffold;
 import com.freitech.kotetsu.atum.service.ModelCreatorService;
-import com.freitech.kotetsu.atum.service.Scaffold;
 
 @Controller
 public class AtumController {

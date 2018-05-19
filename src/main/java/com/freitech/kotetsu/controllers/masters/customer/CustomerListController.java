@@ -1,4 +1,4 @@
-package com.freitech.kotetsu.controllers.masters.item;
+package com.freitech.kotetsu.controllers.masters.customer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,12 +25,12 @@ import com.freitech.kotetsu.forms.item.ItemSearchForm;
 import com.freitech.kotetsu.service.ItemService;
 
 @Controller
-@RequestMapping("/master/item")
-@ViewDef(layout = ColSize.ONE, title = "お知らせ一覧")
-public class ItemListController extends ListControllerBase<ItemSearchForm> {
+@RequestMapping("/master/customer")
+@ViewDef(layout = ColSize.ONE, title = "顧客一覧")
+public class CustomerListController extends ListControllerBase<ItemSearchForm> {
 
 	@Autowired
-	private ItemService itemService;
+	private CustomerService customerService;
 
 	@Autowired
 	private HttpSession session;
@@ -49,7 +49,7 @@ public class ItemListController extends ListControllerBase<ItemSearchForm> {
 	public String index(Model model) {
 
 		ItemSearchForm cond = searchCond();
-		model.addAttribute("result", itemService.getItemList(cond));
+		model.addAttribute("result", customerService.getList(cond));
 		model.addAttribute("cond", cond);
 
 		return Path.ITEM.getPath().concat(INDEX);
@@ -66,13 +66,13 @@ public class ItemListController extends ListControllerBase<ItemSearchForm> {
 
 		model.addAttribute("cond", cond);
 		session.setAttribute("cond", cond);
-		model.addAttribute("result", itemService.getItemList(cond));
+		model.addAttribute("result", customerService.getItemList(cond));
 
 		// TODO: 検索条件が必要なら
 		return Path.ITEM.getPath().concat(INDEX);
 	}
 
-	protected ItemSearchForm load() {
-		return new ItemSearchForm();
+	protected CustomerSearchForm load() {
+		return new CustomerSearchForm();
 	}
 }

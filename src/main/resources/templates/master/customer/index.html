@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/partial/list
+	">
+<head>
+<title>商品一覧</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="searchCond">
+		<div class="row">
+			<a class="btn btn-primary" th:href="@{/master/item/input}">新規登録</a>
+		</div>
+
+		<div class="x_panel">
+			<div class="x_title">
+				<h4>検索条件</h4>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<form class="form-horizontal form-label-left" novalidate
+					th:action="@{/master/item/index}" th:object="${cond}" method="POST">
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('itemNo', '商品番号', ~{::#itemNo})">
+							<input id="itemNo" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{itemNo}"
+								placeholder="部分一致" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('name', '商品名', ~{::#name})">
+							<input id="name" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{name}"
+								placeholder="部分一致" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div
+							th:replace="/partials/inputPartial::input('type', '商品分類', ~{::#type})">
+							<select id="type" class="form-control col-md-7 col-xs-12"
+								th:field="*{type}">
+								<option th:each="type : ${types}" th:value="${type}"
+									th:text="${type.name}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<button type="submit" class="btn btn-success" name="list"
+								value="list">一覧</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</th:block>
+	<!-- table　-->
+	<th:block layout:fragment="detail">
+		<div class="x_panel">
+			<div class="x_title">
+				<h5>
+					検索結果： <label
+						th:if="${result != null and not #lists.isEmpty(result)}"
+						th:text="${#lists.size(result)} + ' 件'">0</label> <label
+						th:if="${result == null or #lists.isEmpty(result)}">- 件</label>
+				</h5>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<p th:if="${result == null or #lists.isEmpty(result)}"
+					class="text-muted font-13 m-b-30">検索結果が存在しません。</p>
+				<div th:if="${result != null and not #lists.isEmpty(result)}"
+					id="datatable-buttons_wrapper"
+					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+					<table id="datatable-buttons"
+						class="table table-striped table-bordered dataTable no-footer dtr-inline"
+						role="grid" aria-describedby="datatable-buttons_info">
+						<thead>
+							<tr role="row">
+								<th class="sorting_asc" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="#: activate to sort column descending"
+									aria-sort="ascending">#</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="商品番号: activate to sort column ascending">商品番号</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="商品名: activate to sort column ascending">商品名</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="商品分類: activate to sort column ascending">商品分類</th>
+								<th class="sorting" tabindex="0"
+									aria-controls="datatable-buttons" rowspan="1" colspan="1"
+									aria-label="単位: activate to sort column ascending">単位</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="item, stat : ${result}" th:object="${item}">
+								<tr role="row" th:class="${stat.even} ? 'even' : 'odd'">
+									<td class="sorting_1" tabindex="0"><label th:text="*{id}">a</label></td>
+									<td><label th:text="*{itemNo}">b</label></td>
+									<td><label th:text="*{name}">c</label></td>
+									<td><label th:text="*{type.name}">d</label></td>
+									<td><label th:text="*{unit.name}">e</label></td>
+									<td><a class="btn btn-round btn-info" title="照会"
+										th:href="@{'/master/item/detail/' + *{id}}"><i
+											class="fa fa-file-text-o"></i></a> <a
+										class="btn btn-round btn-primary" title="編集"
+										th:href="@{'/master/item/input/' + *{id}}"><i
+											class="fa fa-pencil-square-o"></i></a> <a
+										class="btn btn-danger btn-round" title="削除"
+										data-toggle="modal" data-target=".delete-confirm"><i
+											class="fa fa-trash-o"></i></a>
+										<div
+											th:replace="/partials/deleteModal::delete(~{::.del-confirm})">
+											<a class="btn btn-danger del-confirm"
+												th:href="@{'/master/item/delete/' + *{id}}">削除</a>
+										</div></td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</th:block>
+</body>
+</html>

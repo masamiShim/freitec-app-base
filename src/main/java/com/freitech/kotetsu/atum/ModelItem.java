@@ -3,6 +3,10 @@ package com.freitech.kotetsu.atum;
 import static org.junit.Assert.assertNotNull;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.freitech.kotetsu.atum.annotations.CreatorSetting;
 import com.freitech.kotetsu.config.annotations.ViewAttribute;
@@ -56,5 +60,29 @@ public class ModelItem {
 			label = viewSetting[0].name();
 			placeholder = viewSetting[0].placeholder();
 		}
+	}
+
+	public Map<String, Object> toAttributeMap() {
+		Map<String, Object> attrs = toAttributeBaseMap();
+		attrs.put("th:attr", "readonly='__${readonly}__'");
+		return attrs;
+	}
+
+	public Map<String, Object> toIndexAttributeMap() {
+		Map<String, Object> attrs = new LinkedHashMap<>();
+		attrs.put("th:replace", "/partials/inputPartial::input('" + member + "', '" + label + "',~{::#"
+		  + member + "})");
+		return attrs;
+	}
+	public Map<String, Object> toAttributeBaseMap() {
+		Map<String, Object> attrs = new LinkedHashMap<>();
+		attrs.put("id", member);
+		attrs.put("type", inputType);
+		attrs.put("class", "form-control col-md-7 col-xs-12");
+		attrs.put("th:field", "*{" + member + "}");
+		if (StringUtils.isNotEmpty(placeholder)) {
+			attrs.put("placeholder", placeholder);
+		}
+		return attrs;
 	}
 }

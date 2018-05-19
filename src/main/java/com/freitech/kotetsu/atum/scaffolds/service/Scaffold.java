@@ -1,4 +1,4 @@
-package com.freitech.kotetsu.atum.service;
+package com.freitech.kotetsu.atum.scaffolds.service;
 
 public interface Scaffold {
 	/**

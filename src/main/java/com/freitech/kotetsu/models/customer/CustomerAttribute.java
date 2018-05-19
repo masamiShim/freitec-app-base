@@ -1,9 +1,14 @@
 package com.freitech.kotetsu.models.customer;
 
+import java.math.RoundingMode;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.freitech.kotetsu.models.base.AbstractAttribute;
 
@@ -22,8 +27,15 @@ public class CustomerAttribute extends AbstractAttribute {
 	@JoinColumn(name = "CustomerId", nullable = false)
 	private Customer customer;
 
-	/** 企業名 */
+	@Column(name = "AppliedStartDate")
+	private LocalDate applyStartDate;
 
+	/** 企業番号 */
+	@Length(min = 1, max = 10)
+	@Column(name = "CustomerNo")
+	private String customerNo;
+
+	/** 企業名 */
 	@Column(name = "CorpName")
 	private String corpName;
 
@@ -31,33 +43,33 @@ public class CustomerAttribute extends AbstractAttribute {
 	@Column(name = "CorpDispName")
 	private String corpDispName;
 
-	/** 継承 */
+	/** 敬称 */
 	@Column(name = "Honorific")
 	private String honorific;
 
 	/** 請求月 */
 	@Column(name = "CutoffAfter")
-	private int cutoffAfter;
+	private CutoffAfter cutoffAfter;
 
 	/** 請求締日 */
 	@Column(name = "CutoffDays")
-	private String cutoffDays;
+	private CutoffDays cutoffDays;
 
 	/** 請求丸め */
 	@Column(name = "CutoffRounding")
-	private int cutoffRounding;
+	private RoundingMode cutoffRounding;
 
 	/** 支払月 */
 	@Column(name = "PaymentAfter")
-	private int paymentAfter;
+	private PaymentAfter paymentAfter;
 
 	/** 支払日 */
 	@Column(name = "PaymentDay")
-	private String paymentDay;
+	private PaymentDay paymentDay;
 
 	/** 支払丸め */
 	@Column(name = "PaymentRounding")
-	private int paymentRounding;
+	private RoundingMode paymentRounding;
 
 	/** 外税 */
 	@Column(name = "ExcludeTax")

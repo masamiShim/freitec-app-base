@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.freitech.kotetsu.atum.service.ModelTemplateBuilderImpl;
+import com.freitech.kotetsu.atum.scaffolds.service.impl.ModelTemplateBuilderImpl;
 import com.freitech.kotetsu.models.information.Information;
 
 @RunWith(SpringJUnit4ClassRunner.class)
