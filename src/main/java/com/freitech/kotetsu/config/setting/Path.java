@@ -7,6 +7,7 @@ public enum Path {
 	INFORMATION("information"),
 	CUSTOMER("customer"),
 	ITEM("master/item"),
+	UNITPRICE("master/unitprice"),
 	ESTIMATE("estimate");
 		
 	private String path;

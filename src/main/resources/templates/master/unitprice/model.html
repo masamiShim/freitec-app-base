@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div th:fragment="model(readonly)">
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('customer', '顧客', ~{::#customer})">
+				<select id="customer" class="form-control col-md-7 col-xs-12"
+					th:field="*{customer}">
+					<option value=""></option>
+					<option th:each="customer : ${customers}" th:value="${customer.id}"
+						th:text="${customer.getLatestAttribute(#Date.now()).cormName}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('item', '商品', ~{::#item})">
+				<select id="item" class="form-control col-md-7 col-xs-12"
+					th:field="*{item}">
+					<option value=""></option>
+					<option th:each="item : ${items}" th:value="${item.id}"
+						th:text="${item.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('appliedDate', '適用開始日', ~{::#appliedDate})">
+				<input id="appliedDate" type="date"
+					class="form-control col-md-7 col-xs-12" th:field="*{appliedDate}"
+					th:attr="readonly='__${readonly}__'" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('price', '価格', ~{::#price})">
+				<input id="price" type="number"
+					class="form-control col-md-7 col-xs-12" th:field="*{price}"
+					th:attr="readonly='__${readonly}__'" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('resume', '備考', ~{::#resume})">
+				<input id="resume" type="text"
+					class="form-control col-md-7 col-xs-12" th:field="*{resume}"
+					th:attr="readonly='__${readonly}__'" placeholder="特別価格" />
+			</div>
+		</div>
+		<!-- 		<div class="form-group"> -->
+		<!-- 			<div -->
+		<!-- 				th:replace="/partials/inputPartial::input('type', '商品分類', ~{::#type})"> -->
+		<!-- 				<select id="type" class="form-control col-md-7 col-xs-12" -->
+		<!-- 					th:field="*{type}" th:attr="readonly='__${readonly}__'"> -->
+		<!-- 					<option th:each="type : ${types}" th:value="${type}" -->
+		<!-- 						th:text="${type.name}"></option> -->
+		<!-- 				</select> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
+	</div>
+</body>

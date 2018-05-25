@@ -27,7 +27,7 @@ import lombok.ToString;
 @Entity
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "Unit_Price")
+@Table(name = "UnitPrice")
 public class UnitPrice extends SecurityAuditor implements PriceBase {
 
 	private static final long serialVersionUID = 1L;
@@ -36,21 +36,31 @@ public class UnitPrice extends SecurityAuditor implements PriceBase {
 	@Column(name = "unitPriceId")
 	private Long id;
 
+	@NotNull
 	@ManyToOne
 	private Item item;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer customer;
 
-	@Column(name = "identityName")
-	private String identityName;
+	@Column(name = "resume")
+	private String resume;
 
 	@NotNull
 	@Column(name = "price")
 	private BigDecimal price;
 
 	@NotNull
-	@Column(name = "expired")
-	private LocalDate expired;
+	@Column(name = "appliedDate")
+	private LocalDate appliedDate;
+
+	public void setPersistInfo(UnitPrice other) {
+		item = other.getItem();
+		customer = other.getCustomer();
+		resume = other.getResume();
+		price = other.getPrice();
+		appliedDate = other.getAppliedDate();
+	}
 
 }

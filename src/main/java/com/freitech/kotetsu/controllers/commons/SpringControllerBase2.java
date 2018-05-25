@@ -23,7 +23,7 @@ public abstract class SpringControllerBase2<T> {
 	protected final String SUCCESS_MESSAGE = "success";
 
 	protected Class<T> m;
-
+	
 	protected void createBindingErrorView(BindingResult bindingResult, Model model) {
 
 		model.addAttribute("errors",

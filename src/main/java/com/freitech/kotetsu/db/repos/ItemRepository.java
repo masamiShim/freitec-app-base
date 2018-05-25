@@ -11,5 +11,6 @@ import com.freitech.kotetsu.models.item.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long>,
   JpaSpecificationExecutor<Item> {
+
 	Optional<Item> findById(Long Id);
 }
