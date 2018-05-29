@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.freitech.kotetsu.db.repos.UserRepository;
+import com.freitech.kotetsu.db.repositories.UserRepository;
 import com.freitech.kotetsu.models.User;
 
 @Component

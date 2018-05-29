@@ -4,18 +4,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.InformationRepository;
-import com.freitech.kotetsu.db.repos.specifications.InformationSpecification;
+import com.freitech.kotetsu.db.repositories.InformationRepository;
+import com.freitech.kotetsu.db.specifications.InformationSpecification;
 import com.freitech.kotetsu.exceptions.BussinessException;
 import com.freitech.kotetsu.forms.system.information.InformationSearchForm;
 import com.freitech.kotetsu.models.information.Information;
-import com.freitech.kotetsu.models.information.InformationListModel;
 import com.freitech.kotetsu.service.InformationService;
 
 @Service

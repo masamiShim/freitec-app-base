@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.EstimateRepository;
-import com.freitech.kotetsu.db.repos.specifications.EstimateSpecification;
+import com.freitech.kotetsu.db.repositories.EstimateRepository;
+import com.freitech.kotetsu.db.specifications.EstimateSpecification;
 import com.freitech.kotetsu.exceptions.BussinessException;
 import com.freitech.kotetsu.forms.estimate.EstimateSearchForm;
 import com.freitech.kotetsu.models.estimate.Estimate;

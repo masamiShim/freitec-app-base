@@ -21,13 +21,15 @@ import com.freitech.kotetsu.config.annotations.ColSize;
 import com.freitech.kotetsu.config.annotations.ViewDef;
 import com.freitech.kotetsu.config.setting.Path;
 import com.freitech.kotetsu.controllers.commons.ListControllerBase;
+import com.freitech.kotetsu.forms.customer.CustomerSearchForm;
 import com.freitech.kotetsu.forms.item.ItemSearchForm;
+import com.freitech.kotetsu.service.CustomerService;
 import com.freitech.kotetsu.service.ItemService;
 
 @Controller
 @RequestMapping("/master/customer")
 @ViewDef(layout = ColSize.ONE, title = "顧客一覧")
-public class CustomerListController extends ListControllerBase<ItemSearchForm> {
+public class CustomerListController extends ListControllerBase<CustomerSearchForm> {
 
 	@Autowired
 	private CustomerService customerService;
@@ -48,16 +50,15 @@ public class CustomerListController extends ListControllerBase<ItemSearchForm> {
 	@GetMapping(path = INDEX)
 	public String index(Model model) {
 
-		ItemSearchForm cond = searchCond();
-		model.addAttribute("result", customerService.getList(cond));
+		CustomerSearchForm cond = searchCond();
+		model.addAttribute("result", customerService.getSearchResutls(cond));
 		model.addAttribute("cond", cond);
 
 		return Path.ITEM.getPath().concat(INDEX);
 	}
 
 	@PostMapping(path = INDEX)
-	public String list(@Valid @ModelAttribute("cond") ItemSearchForm cond, BindingResult error,
-	                   Model model) {
+	public String list(@Valid @ModelAttribute("cond") CustomerSearchForm cond, BindingResult error, Model model) {
 		// エラーあればさよなら
 		if (error.hasErrors()) {
 			createBindingErrorView(error, model);
@@ -66,7 +67,7 @@ public class CustomerListController extends ListControllerBase<ItemSearchForm> {
 
 		model.addAttribute("cond", cond);
 		session.setAttribute("cond", cond);
-		model.addAttribute("result", customerService.getItemList(cond));
+		model.addAttribute("result", customerService.getSearchResutls(cond));
 
 		// TODO: 検索条件が必要なら
 		return Path.ITEM.getPath().concat(INDEX);

@@ -1,7 +1,5 @@
 package com.freitech.kotetsu.atum.builders;
 
-import static org.mockito.Mockito.ignoreStubs;
-
 import java.util.Map;
 import java.util.Stack;
 

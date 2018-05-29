@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.freitech.kotetsu.db.repos.CustomerRepository;
+import com.freitech.kotetsu.db.repositories.CustomerRepository;
 import com.freitech.kotetsu.forms.customer.CustomerForm;
 
 
-@Controller
+@Controller("OldCustomerController")
 @RequestMapping("customers")
 public class CustomerController extends ControllerBaseImpl<CustomerForm> {
 

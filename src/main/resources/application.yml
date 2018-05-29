@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/base_app
     username: dev
-    password: dev
+    password: dev 
     driver-class-name: com.mysql.jdbc.Driver
     initialize: false
 

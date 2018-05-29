@@ -1,28 +1,18 @@
 package com.freitech.kotetsu.service.impl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.ItemRepository;
-import com.freitech.kotetsu.db.repos.specifications.InformationSpecification;
+import com.freitech.kotetsu.db.repositories.ItemRepository;
+import com.freitech.kotetsu.db.specifications.ItemSpecification;
 import com.freitech.kotetsu.exceptions.BussinessException;
 import com.freitech.kotetsu.forms.item.ItemSearchForm;
-import com.freitech.kotetsu.forms.system.information.InformationSearchForm;
 import com.freitech.kotetsu.models.item.Item;
-import com.freitech.kotetsu.models.item.ItemListModel;
 import com.freitech.kotetsu.service.ItemService;
-
-import lombok.Data;
 
 @Service
 public class ItemServiceImpl implements ItemService {

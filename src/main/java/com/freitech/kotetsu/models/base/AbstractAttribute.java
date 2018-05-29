@@ -1,11 +1,12 @@
 package com.freitech.kotetsu.models.base;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 
-import com.freitech.kotetsu.core.domain.Amount;
+import com.fasterxml.jackson.core.sym.Name;
 import com.freitech.kotetsu.models.SecurityAuditor;
+import com.freitech.kotetsu.models.customer.Address;
+import com.freitech.kotetsu.models.customer.Contact;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,47 +16,15 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public abstract class AbstractAttribute extends SecurityAuditor {
 
-	@Column(name = "FirstName")
-	private String firstName;
 
-	@Column(name = "FirstNameKana")
-	private String firstNameKana;
+	@Embedded
+	private Name name;
+	
+	@Embedded
+	private Address address;
 
-	@Column(name = "LastName")
-	private String lastName;
-
-	@Column(name = "LastNameKana")
-	private String lastNameKana;
-
-	@Column(name = "EstablishDate")
-	private LocalDate establishDate;
-
-	@Column(name = "Fund")
-	private Amount fund;
-
-	@Column(name = "ZipCode")
-	private String zipCode;
-
-	@Column(name = "PhoneNum")
-	private String phoneNum;
-
-	@Column(name = "FaxNum")
-	private String faxNum;
-
-	@Column(name = "Email")
-	private String email;
-
-	@Column(name = "Address1")
-	private String address1;
-
-	@Column(name = "Address2")
-	private String address2;
-
-	@Column(name = "Address3")
-	private String address3;
-
-	@Column(name = "CutoffDay")
-	private String cutoffDay;
+	@Embedded
+	private Contact contact;
 
 	@Column(name = "Remark1")
 	private String remark1;

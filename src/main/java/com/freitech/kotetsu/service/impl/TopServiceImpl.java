@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.InformationRepository;
+import com.freitech.kotetsu.db.repositories.InformationRepository;
 import com.freitech.kotetsu.models.information.Information;
 import com.freitech.kotetsu.service.TopService;
 

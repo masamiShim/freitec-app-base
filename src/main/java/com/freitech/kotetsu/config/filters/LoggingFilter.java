@@ -22,6 +22,7 @@ public class LoggingFilter implements Filter {
   @Override
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain chain) throws IOException, ServletException {
+	  
     HttpServletRequest req = ((HttpServletRequest) request);
     String uri = req.getRequestURI();
 
@@ -34,8 +35,9 @@ public class LoggingFilter implements Filter {
     long start = System.currentTimeMillis();
     String identifier = String.format("[%s] : [%s] -> ", req.getRemoteUser(),
         req.getRequestedSessionId());
-//    log.info(String.format(" %s start ", identifier, start));
-//    log.info(String.format(" %s URI: %s", identifier, uri));
+    
+    log.info(String.format(" %s start ", identifier, start));
+    log.info(String.format(" %s URI: %s", identifier, uri));
 
     // パラメータ出力
     Map<String, String[]> params = req.getParameterMap();

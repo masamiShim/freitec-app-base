@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.freitech.kotetsu.db.repos.UserRepository;
+import com.freitech.kotetsu.db.repositories.UserRepository;
 import com.freitech.kotetsu.models.User;
 
 @ControllerAdvice

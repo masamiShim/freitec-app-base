@@ -1,4 +1,4 @@
-package com.freitech.kotetsu.db.repos;
+package com.freitech.kotetsu.db.repositories;
 
 import java.time.LocalDate;
 import java.util.List;
