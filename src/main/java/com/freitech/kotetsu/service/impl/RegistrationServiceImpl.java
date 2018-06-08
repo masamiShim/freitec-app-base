@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.UserRepository;
+import com.freitech.kotetsu.db.repositories.UserRepository;
 import com.freitech.kotetsu.forms.RegistrationForm;
 import com.freitech.kotetsu.models.User;
 import com.freitech.kotetsu.service.LoginService;

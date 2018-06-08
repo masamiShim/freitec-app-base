@@ -1,39 +1,35 @@
 package com.freitech.kotetsu.models.customer;
 
-import java.math.RoundingMode;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import com.freitech.kotetsu.models.SecurityAuditor;
 import com.freitech.kotetsu.models.base.AbstractAttribute;
 
 import groovy.transform.ToString;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Table(name = "CustomerAttribute")
 @SuppressWarnings("serial")
 @Entity
 @Data
 @ToString(excludes = "customer")
 @EqualsAndHashCode(exclude = "customer", callSuper = false)
-public class CustomerAttribute extends AbstractAttribute {
-	
+public class CustomerAttribute extends SecurityAuditor {
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "CustomerId", nullable = false)
 	private Customer customer;
-
-	@Column(name = "AppliedStartDate")
-	private LocalDate applyStartDate;
-
-	/** 企業番号 */
-	@Length(min = 1, max = 10)
-	@Column(name = "CustomerNo")
-	private String customerNo;
 
 	/** 企業名 */
 	@Column(name = "CorpName")
@@ -43,36 +39,45 @@ public class CustomerAttribute extends AbstractAttribute {
 	@Column(name = "CorpDispName")
 	private String corpDispName;
 
+	/** 適用開始日 */
+	@NotNull
+	@Column(name = "AppliedStartDate")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate applyStartDate;
+
 	/** 敬称 */
 	@Column(name = "Honorific")
 	private String honorific;
+	
+	@Embedded
+	private Name name;
+	
+	@Embedded
+	private Address address;
 
-	/** 請求月 */
-	@Column(name = "CutoffAfter")
-	private CutoffAfter cutoffAfter;
+	@Embedded
+	private Contact contact;
 
-	/** 請求締日 */
-	@Column(name = "CutoffDays")
-	private CutoffDays cutoffDays;
+	@Embedded
+	private BillingInfo billing;
 
-	/** 請求丸め */
-	@Column(name = "CutoffRounding")
-	private RoundingMode cutoffRounding;
+	@Embedded
+	private PaymentInfo payment;
 
-	/** 支払月 */
-	@Column(name = "PaymentAfter")
-	private PaymentAfter paymentAfter;
+	/** 内税 */
+	@Column(name = "IncludeTax")
+	private IncludeTax includeTax;
 
-	/** 支払日 */
-	@Column(name = "PaymentDay")
-	private PaymentDay paymentDay;
-
-	/** 支払丸め */
-	@Column(name = "PaymentRounding")
-	private RoundingMode paymentRounding;
-
-	/** 外税 */
-	@Column(name = "ExcludeTax")
-	private boolean excludeTax;
-
+	public void setPersist(CustomerAttribute other) {
+		corpName = other.getCorpName();
+		corpDispName = other.getCorpDispName();
+		applyStartDate = other.getApplyStartDate();
+		address = other.getAddress();
+		name = other.getName();
+		contact = other.getContact();
+		honorific = other.getHonorific();
+		billing = other.getBilling();
+		payment = other.getPayment();
+		includeTax = other.getIncludeTax();
+	}
 }

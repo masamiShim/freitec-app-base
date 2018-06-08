@@ -5,9 +5,10 @@ import lombok.Getter;
 @Getter
 public enum Path {
 	INFORMATION("information"),
-	CUSTOMER("customer"),
+	UNKNOWN("customer"),
 	ITEM("master/item"),
-	ESTIMATE("estimate");
+	ESTIMATE("estimate"),
+	CUSTOMER("master/customer");
 		
 	private String path;
 	

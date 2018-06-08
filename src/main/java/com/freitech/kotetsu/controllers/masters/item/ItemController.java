@@ -24,7 +24,7 @@ import com.freitech.kotetsu.codes.Unit;
 import com.freitech.kotetsu.config.setting.Path;
 import com.freitech.kotetsu.config.setting.PathBuilder;
 import com.freitech.kotetsu.controllers.commons.SpringControllerBase2;
-import com.freitech.kotetsu.db.repos.ItemRepository;
+import com.freitech.kotetsu.db.repositories.ItemRepository;
 import com.freitech.kotetsu.models.item.Item;
 import com.freitech.kotetsu.service.ItemService;
 

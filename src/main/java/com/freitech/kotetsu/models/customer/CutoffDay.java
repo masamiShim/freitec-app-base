@@ -1,6 +1,6 @@
 package com.freitech.kotetsu.models.customer;
 
-public enum CutoffDays {
+public enum CutoffDay {
   /** 5日　*/
   FIFTH("5", "5日締め"),
   /** 10日　*/
@@ -17,7 +17,7 @@ public enum CutoffDays {
   public String code = "";
   public String name = "";
 
-  private CutoffDays(final String code, final String name) {
+  private CutoffDay(final String code, final String name) {
     this.code = code;
     this.name = name;
   }

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.UserRepository;
-import com.freitech.kotetsu.db.repos.specifications.UserSpecification;
+import com.freitech.kotetsu.db.repositories.UserRepository;
+import com.freitech.kotetsu.db.specifications.UserSpecification;
 import com.freitech.kotetsu.forms.customer.UserSearchForm;
 import com.freitech.kotetsu.models.User;
 import com.freitech.kotetsu.service.UserService;

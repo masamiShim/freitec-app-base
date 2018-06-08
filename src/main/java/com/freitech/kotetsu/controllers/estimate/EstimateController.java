@@ -25,7 +25,7 @@ import com.freitech.kotetsu.codes.SectionType;
 import com.freitech.kotetsu.config.setting.Path;
 import com.freitech.kotetsu.config.setting.PathBuilder;
 import com.freitech.kotetsu.controllers.commons.SpringControllerBase2;
-import com.freitech.kotetsu.db.repos.EstimateRepository;
+import com.freitech.kotetsu.db.repositories.EstimateRepository;
 import com.freitech.kotetsu.models.estimate.Estimate;
 import com.freitech.kotetsu.models.estimate.EstimateDetail;
 import com.freitech.kotetsu.service.EstimateService;
