@@ -69,7 +69,9 @@ public class LoggingFilter implements Filter {
         || uri.contains("/css/")
         || uri.contains("/fonts/") 
         || uri.contains("/img/")
+        || uri.contains("/images/")
         || uri.contains("/favicon")
+        || uri.contains("/vendors")
         || uri.contains("/webjars/");
   }
 

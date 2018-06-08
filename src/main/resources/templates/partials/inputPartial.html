@@ -6,12 +6,13 @@
 <body>
 	<div th:fragment="input(field_id, label, input_element)"
 		th:classappend="${#fields.hasErrors('__${field_id}__')} ? 'has-error'">
-		<label th:for="${field_id}" th:text="${label}" 
+		<label th:for="${field_id}" th:text="${label}"
 			class="control-label col-md-3 col-sm-3 col-xs-12">label name</label>
 		<div class="col-md-6 col-sm-6 col-xs-12">
 			<th:block th:replace="${input_element}" />
-		<div class="col-md-6 col-sm-6 col-xs-12" style="color:#a94442;" th:if="${#fields.hasErrors('__${field_id}__')}"
-			th:errors="*{__${field_id}__}">Error</div>
+			<div class="col-md-6 col-sm-6 col-xs-12" style="color: #a94442;"
+				th:if="${#fields.hasErrors('__${field_id}__')}"
+				th:errors="*{__${field_id}__}">Error</div>
 		</div>
 
 	</div>

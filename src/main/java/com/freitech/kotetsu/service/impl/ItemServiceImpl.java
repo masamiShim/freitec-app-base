@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.freitech.kotetsu.db.repositories.ItemRepository;
 import com.freitech.kotetsu.db.specifications.ItemSpecification;
-import com.freitech.kotetsu.exceptions.BussinessException;
+import com.freitech.kotetsu.exceptions.BusinessException;
 import com.freitech.kotetsu.forms.item.ItemSearchForm;
 import com.freitech.kotetsu.models.item.Item;
 import com.freitech.kotetsu.service.ItemService;
@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findById(id).map(exists -> {
 			exists.setDeleted(LocalDateTime.now());
 			return itemRepository.save(exists) != null ? true : false;
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 
 	}
 
@@ -42,7 +42,7 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findById(id).map(exists -> {
 			exists.setPersistInfo(form);
 			return itemRepository.save(exists);
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 	@Override

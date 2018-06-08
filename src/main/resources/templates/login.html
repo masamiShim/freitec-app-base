@@ -24,8 +24,9 @@
 					</div>
 					<div th:if="${timeout}" class="alert alert-danger" role="alert">
 						<!-- errorMessage Area -->
-						<p class="col-sm-offset-1">
-							一定時間操作がなかった為、ログアウトしました。ご利用される場合は再度ログインして下さい。</p>
+						<p>
+							一定時間操作がなかった為、ログアウトしました。<br>
+							ご利用される場合は再度ログインして下さい。</p>
 						<!-- /errorMessage Area -->
 					</div>
 					<div th:if="${errors != null}" class="alert alert-danger"

@@ -2,6 +2,7 @@ package com.freitech.kotetsu.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.freitech.kotetsu.db.repositories.CustomerRepository;
 import com.freitech.kotetsu.db.specifications.CustomerSpecification;
-import com.freitech.kotetsu.exceptions.BussinessException;
+import com.freitech.kotetsu.exceptions.BusinessException;
 import com.freitech.kotetsu.forms.customer.CustomerSearchForm;
 import com.freitech.kotetsu.models.customer.Customer;
 import com.freitech.kotetsu.service.CustomerService;
@@ -25,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer regist(Customer form) {
-		return customerRepository.save(form);
+		return Optional.ofNullable(customerRepository.save(form)).orElseThrow(BusinessException::new);
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepository.findByIdAndDeletedIsNull(id).map(exists -> {
 			exists.setDeleted(LocalDateTime.now());
 			return customerRepository.save(exists) != null ? true : false;
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 
 	}
 
@@ -42,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepository.findByIdAndDeletedIsNull(id).map(exists -> {
 			exists.setPersistInfo(form);
 			return customerRepository.save(exists);
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 	@Override

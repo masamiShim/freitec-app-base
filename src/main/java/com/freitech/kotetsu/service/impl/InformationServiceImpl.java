@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.freitech.kotetsu.db.repositories.InformationRepository;
 import com.freitech.kotetsu.db.specifications.InformationSpecification;
-import com.freitech.kotetsu.exceptions.BussinessException;
+import com.freitech.kotetsu.exceptions.BusinessException;
 import com.freitech.kotetsu.forms.system.information.InformationSearchForm;
 import com.freitech.kotetsu.models.information.Information;
 import com.freitech.kotetsu.service.InformationService;
@@ -39,7 +39,7 @@ public class InformationServiceImpl implements InformationService {
 		return informationRepository.findById(id).map(exists -> {
 			exists.setPersistInfo(form);
 			return informationRepository.save(exists);
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class InformationServiceImpl implements InformationService {
 		return informationRepository.findById(id).map(exists -> {
 			exists.setDeleted(LocalDateTime.now());
 			return informationRepository.save(exists) != null ? true : false;
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 	@Override

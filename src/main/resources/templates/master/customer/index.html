@@ -4,13 +4,13 @@
 	layout:decorator="include/partial/list
 	">
 <head>
-<title>商品一覧</title>
+<title>顧客一覧</title>
 <meta charset="UTF-8" />
 </head>
 <body>
 	<th:block layout:fragment="searchCond">
 		<div class="row">
-			<a class="btn btn-primary" th:href="@{/master/item/input}">新規登録</a>
+			<a class="btn btn-primary" th:href="@{/master/customer/input}">新規登録</a>
 		</div>
 
 		<div class="x_panel">
@@ -20,31 +20,21 @@
 			</div>
 			<div class="x_content">
 				<form class="form-horizontal form-label-left" novalidate
-					th:action="@{/master/item/index}" th:object="${cond}" method="POST">
+					th:action="@{/master/customer/index}" th:object="${cond}" method="POST">
 					<div class="form-group">
 						<div
-							th:replace="/partials/inputPartial::input('itemNo', '商品番号', ~{::#itemNo})">
-							<input id="itemNo" type="text"
-								class="form-control col-md-7 col-xs-12" th:field="*{itemNo}"
-								placeholder="部分一致" />
+							th:replace="/partials/inputPartial::input('customerNo', '顧客番号', ~{::#customerNo})">
+							<input id="customerNo" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{customerNo}"
+								placeholder="先頭一致" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div
-							th:replace="/partials/inputPartial::input('name', '商品名', ~{::#name})">
-							<input id="name" type="text"
-								class="form-control col-md-7 col-xs-12" th:field="*{name}"
+							th:replace="/partials/inputPartial::input('corpName', '顧客名', ~{::#corpName})">
+							<input id="corpName" type="text"
+								class="form-control col-md-7 col-xs-12" th:field="*{corpName}"
 								placeholder="部分一致" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div
-							th:replace="/partials/inputPartial::input('type', '商品分類', ~{::#type})">
-							<select id="type" class="form-control col-md-7 col-xs-12"
-								th:field="*{type}">
-								<option th:each="type : ${types}" th:value="${type}"
-									th:text="${type.name}"></option>
-							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -86,32 +76,24 @@
 									aria-sort="ascending">#</th>
 								<th class="sorting" tabindex="0"
 									aria-controls="datatable-buttons" rowspan="1" colspan="1"
-									aria-label="商品番号: activate to sort column ascending">商品番号</th>
+									aria-label="顧客番号: activate to sort column ascending">顧客番号</th>
 								<th class="sorting" tabindex="0"
 									aria-controls="datatable-buttons" rowspan="1" colspan="1"
-									aria-label="商品名: activate to sort column ascending">商品名</th>
-								<th class="sorting" tabindex="0"
-									aria-controls="datatable-buttons" rowspan="1" colspan="1"
-									aria-label="商品分類: activate to sort column ascending">商品分類</th>
-								<th class="sorting" tabindex="0"
-									aria-controls="datatable-buttons" rowspan="1" colspan="1"
-									aria-label="単位: activate to sort column ascending">単位</th>
+									aria-label="顧客名: activate to sort column ascending">顧客名</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<th:block th:each="item, stat : ${result}" th:object="${item}">
+							<th:block th:each="customer, stat : ${result}" th:object="${customer}">
 								<tr role="row" th:class="${stat.even} ? 'even' : 'odd'">
-									<td class="sorting_1" tabindex="0"><label th:text="*{id}">a</label></td>
-									<td><label th:text="*{itemNo}">b</label></td>
-									<td><label th:text="*{name}">c</label></td>
-									<td><label th:text="*{type.name}">d</label></td>
-									<td><label th:text="*{unit.name}">e</label></td>
+									<td class="sorting_1" tabindex="0"><label th:text="${stat.index + 1}">a</label></td>
+									<td><label th:text="*{customerNo}">b</label></td>
+									<td><label th:text="*{attributes.corpName}">b</label></td>
 									<td><a class="btn btn-round btn-info" title="照会"
-										th:href="@{'/master/item/detail/' + *{id}}"><i
+										th:href="@{'/master/customer/detail/' + *{id}}"><i
 											class="fa fa-file-text-o"></i></a> <a
 										class="btn btn-round btn-primary" title="編集"
-										th:href="@{'/master/item/input/' + *{id}}"><i
+										th:href="@{'/master/customer/input/' + *{id}}"><i
 											class="fa fa-pencil-square-o"></i></a> <a
 										class="btn btn-danger btn-round" title="削除"
 										data-toggle="modal" data-target=".delete-confirm"><i
@@ -119,7 +101,7 @@
 										<div
 											th:replace="/partials/deleteModal::delete(~{::.del-confirm})">
 											<a class="btn btn-danger del-confirm"
-												th:href="@{'/master/item/delete/' + *{id}}">削除</a>
+												th:href="@{'/master/customer/delete/' + *{id}}">削除</a>
 										</div></td>
 								</tr>
 							</th:block>

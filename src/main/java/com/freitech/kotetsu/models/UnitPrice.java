@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.freitech.kotetsu.models.customer.Customer;
-import com.freitech.kotetsu.models.item.Item;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,7 +36,7 @@ public class UnitPrice extends SecurityAuditor implements PriceBase {
 	private Long id;
 
 	@ManyToOne
-	private Item item;
+	private Customer item;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer customer;

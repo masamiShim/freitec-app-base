@@ -4,18 +4,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.freitech.kotetsu.exceptions.BussinessException;
+import com.freitech.kotetsu.exceptions.BusinessException;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public abstract class ListControllerBase<T> extends SpringControllerBase2<T> {
 
 	@Autowired
 	HttpSession session;
 
 	@SuppressWarnings("unchecked")
-	protected T searchCond() throws BussinessException {
+	protected T searchCond() throws BusinessException {
 		T cond = load();
 		if (session.getAttribute("cond") != null
 		  && session.getAttribute("cond").getClass().isInstance(m)) {

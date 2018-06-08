@@ -14,9 +14,9 @@ import com.freitech.kotetsu.db.repositories.CustomerRepository;
 import com.freitech.kotetsu.forms.customer.CustomerForm;
 
 
-@Controller("OldCustomerController")
+@Controller
 @RequestMapping("customers")
-public class CustomerController extends ControllerBaseImpl<CustomerForm> {
+public class UnknownController extends ControllerBaseImpl<CustomerForm> {
 
     @Autowired
 	private CustomerRepository customerRepo;
@@ -25,7 +25,7 @@ public class CustomerController extends ControllerBaseImpl<CustomerForm> {
 	/**
 	 * コンストラクタ
 	 */
-	public CustomerController(){
+	public UnknownController(){
 		//viewファイルまでのパスを指定
 		PREF = "customers";
 	}

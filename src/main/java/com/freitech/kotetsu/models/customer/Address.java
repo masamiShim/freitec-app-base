@@ -3,7 +3,10 @@ package com.freitech.kotetsu.models.customer;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import lombok.Data;
+
 @Embeddable
+@Data
 public class Address {
 	
 	@Column(name = "ZipCode")

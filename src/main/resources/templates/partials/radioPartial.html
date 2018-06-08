@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block th:fragment="radio(field_id, label, input_element, codeval)"
+		th:classappend="${#fields.hasErrors('__${field_id}__')} ? 'has-error'">
+		<label th:for="${field_id}" th:text="${label}"
+			class="control-label col-md-3 col-sm-3 col-xs-12">label name</label>
+		<div class="control-label col-md-6 col-sm-6 col-xs-12"
+			style="text-align: left;">
+			<th:block th:each="item: ${input_element}">
+			
+				<span th:text="${codeval}"></span>
+				
+				<input type="radio" th:field="*{__${field_id}__}" th:value="${item}" ">
+				<!--/*  
+				<span th:text=${item.name}></span>
+				<span class="iradio_flat-green"
+					th:classappend="*{@ech.code(__${field_id}__)} eq ${item.code} ? 'checked'"
+					style="position: relative;"> <input type="radio"
+					class="flat" th:field="*{__${field_id}__}" th:id="${item}"
+					th:value="${item}" style="position: absolute; opacity: 0;">
+				</span>
+				*/-->
+			</th:block>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-sm-6 col-xs-12" style="color: #a94442;"
+				th:if="${#fields.hasErrors('__${field_id}__')}"
+				th:errors="*{__${field_id}__}">Error</div>
+		</div>
+	</th:block>
+</body>

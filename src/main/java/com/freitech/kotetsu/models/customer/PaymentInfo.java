@@ -1,11 +1,12 @@
 package com.freitech.kotetsu.models.customer;
 
-import java.math.RoundingMode;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import lombok.Data;
+
 @Embeddable
+@Data
 public class PaymentInfo {
 	/** 支払月 */
 	@Column(name = "PaymentAfter")
@@ -17,5 +18,5 @@ public class PaymentInfo {
 
 	/** 支払丸め */
 	@Column(name = "PaymentRounding")
-	private RoundingMode paymentRounding;
+	private Rounding paymentRounding;
 }

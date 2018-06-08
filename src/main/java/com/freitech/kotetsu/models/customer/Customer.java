@@ -1,14 +1,18 @@
 package com.freitech.kotetsu.models.customer;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.validator.constraints.Length;
@@ -16,7 +20,15 @@ import org.hibernate.validator.constraints.Length;
 import com.freitech.kotetsu.core.domain.Amount;
 import com.freitech.kotetsu.models.SecurityAuditor;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@Table(name = "Customer")
 @Entity
+@Data
+@EqualsAndHashCode(callSuper = false)
+@ToString
 public class Customer extends SecurityAuditor {
 
 	private static final long serialVersionUID = 1L;
@@ -34,8 +46,11 @@ public class Customer extends SecurityAuditor {
 	@Column(name = "Fund")
 	private Amount fund;
 
-	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-	List<CustomerAttribute> attributes;
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	List<CustomerAttribute> attributes = new ArrayList<>();
+
+	@Transient
+	CustomerAttribute attribute;
 
 	private Optional<CustomerAttribute> findAttributeById(Long id) {
 		if (CollectionUtils.isNotEmpty(attributes)) {
@@ -44,10 +59,33 @@ public class Customer extends SecurityAuditor {
 		return Optional.empty();
 	}
 
+	public CustomerAttribute getAttributes() {
+		if (CollectionUtils.isNotEmpty(attributes)) {
+			return attributes.stream().sorted(Comparator.comparing(
+			  CustomerAttribute::getApplyStartDate)
+			  .reversed())
+			  .findFirst().orElse(new CustomerAttribute());
+		}
+		return new CustomerAttribute();
+	}
+
+	public void merge(Customer attr) {
+		attr.getAttribute().setCustomer(this);
+		if (attr.getAttribute().getId() != null) {
+			findAttributeById(attr.getAttribute().getId()).ifPresent(prev -> {
+				prev.setPersist(attr.getAttribute());
+			});
+		}
+		else {
+			attributes.add(attr.getAttribute());
+		}
+	}
+
 	public CustomerAttribute getLatestAttribute() {
 		if (CollectionUtils.isNotEmpty(attributes)) {
-			return attributes.stream().sorted(Comparator.comparing(CustomerAttribute::getApplyStartDate).reversed())
-					.findFirst().orElse(null);
+			return attributes.stream().sorted(Comparator.comparing(CustomerAttribute::getApplyStartDate)
+			  .reversed())
+			  .findFirst().orElse(null);
 		}
 		return null;
 	}
@@ -55,7 +93,7 @@ public class Customer extends SecurityAuditor {
 	public Optional<CustomerAttribute> getLatestAttribute(LocalDate targetDate) {
 		if (CollectionUtils.isNotEmpty(attributes)) {
 			return attributes.stream().filter(attr -> attr.getApplyStartDate().isBefore(targetDate))
-					.sorted(Comparator.comparing(CustomerAttribute::getApplyStartDate).reversed()).findFirst();
+			  .sorted(Comparator.comparing(CustomerAttribute::getApplyStartDate).reversed()).findFirst();
 		}
 		return Optional.empty();
 	}
@@ -71,7 +109,8 @@ public class Customer extends SecurityAuditor {
 		this.getLatestAttribute(otherAttribute.getApplyStartDate()).ifPresent(ca -> {
 			if (ca.getApplyStartDate().isEqual(otherAttribute.getApplyStartDate())) {
 				map(ca, otherAttribute);
-			} else {
+			}
+			else {
 				this.attributes.add(map(new CustomerAttribute(), otherAttribute));
 			}
 		});
