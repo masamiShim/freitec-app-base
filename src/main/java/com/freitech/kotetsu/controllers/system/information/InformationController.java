@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.freitech.kotetsu.config.setting.Path;
 import com.freitech.kotetsu.config.setting.PathBuilder;
 import com.freitech.kotetsu.controllers.commons.SpringControllerBase2;
-import com.freitech.kotetsu.db.repos.InformationRepository;
+import com.freitech.kotetsu.db.repositories.InformationRepository;
 import com.freitech.kotetsu.models.information.Information;
 import com.freitech.kotetsu.service.InformationService;
 

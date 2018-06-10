@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import com.freitech.kotetsu.db.repos.UserRepository;
+import com.freitech.kotetsu.db.repositories.UserRepository;
 import com.freitech.kotetsu.models.User;
 
 import lombok.extern.slf4j.Slf4j;

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.UnitPriceRepository;
-import com.freitech.kotetsu.exceptions.BussinessException;
+import com.freitech.kotetsu.db.repositories.UnitPriceRepository;
+import com.freitech.kotetsu.exceptions.BusinessException;
 import com.freitech.kotetsu.forms.unitPrice.UnitPriceSearchForm;
 import com.freitech.kotetsu.models.UnitPrice;
 import com.freitech.kotetsu.service.UnitPriceService;
@@ -29,19 +29,19 @@ public class UnitPriceServiceImpl implements UnitPriceService {
 
 	@Override
 	public boolean delete(Long id) {
-		return unitPriceRepository.findById(id).map(exists -> {
+		return unitPriceRepository.findByIdAndDeletedIsNull(id).map(exists -> {
 			exists.setDeleted(LocalDateTime.now());
 			return unitPriceRepository.save(exists) != null ? true : false;
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 
 	}
 
 	@Override
 	public UnitPrice update(Long id, UnitPrice form) {
-		return unitPriceRepository.findById(id).map(exists -> {
+		return unitPriceRepository.findByIdAndDeletedIsNull(id).map(exists -> {
 			exists.setPersistInfo(form);
 			return unitPriceRepository.save(exists);
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.freitech.kotetsu.controllers.masters.unitprice;
 
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,15 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.freitech.kotetsu.codes.ItemType;
-import com.freitech.kotetsu.codes.Unit;
 import com.freitech.kotetsu.config.annotations.ColSize;
 import com.freitech.kotetsu.config.annotations.ViewDef;
 import com.freitech.kotetsu.config.setting.Path;
 import com.freitech.kotetsu.controllers.commons.ListControllerBase;
-import com.freitech.kotetsu.db.repos.CustomerRepository;
-import com.freitech.kotetsu.db.repos.ItemRepository;
-import com.freitech.kotetsu.db.repos.UnitPriceRepository;
+import com.freitech.kotetsu.db.repositories.CustomerRepository;
+import com.freitech.kotetsu.db.repositories.ItemRepository;
 import com.freitech.kotetsu.forms.unitPrice.UnitPriceSearchForm;
 import com.freitech.kotetsu.models.customer.Customer;
 import com.freitech.kotetsu.models.item.Item;
@@ -47,14 +45,14 @@ public class UnitPriceListController extends ListControllerBase<UnitPriceSearchF
 	private HttpSession session;
 
 	@ModelAttribute(name = "customers")
-	
+
 	public List<Customer> getCustomers() {
-		return customerRepository.findAll();
+		return customerRepository.findByDeletedIsNull().orElse(Collections.emptyList());
 	}
 
 	@ModelAttribute(name = "items")
 	public List<Item> getItems() {
-		return itemRepository.findAll();
+		return itemRepository.findByDeletedIsNull().orElse(Collections.emptyList());
 	}
 
 	@GetMapping(path = INDEX)

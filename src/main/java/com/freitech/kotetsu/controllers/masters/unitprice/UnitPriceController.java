@@ -1,6 +1,5 @@
 package com.freitech.kotetsu.controllers.masters.unitprice;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,14 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.freitech.kotetsu.codes.ItemType;
-import com.freitech.kotetsu.codes.Unit;
 import com.freitech.kotetsu.config.setting.Path;
 import com.freitech.kotetsu.config.setting.PathBuilder;
 import com.freitech.kotetsu.controllers.commons.SpringControllerBase2;
-import com.freitech.kotetsu.db.repos.CustomerRepository;
-import com.freitech.kotetsu.db.repos.ItemRepository;
-import com.freitech.kotetsu.db.repos.UnitPriceRepository;
+import com.freitech.kotetsu.db.repositories.CustomerRepository;
+import com.freitech.kotetsu.db.repositories.ItemRepository;
+import com.freitech.kotetsu.db.repositories.UnitPriceRepository;
 import com.freitech.kotetsu.models.UnitPrice;
 import com.freitech.kotetsu.models.customer.Customer;
 import com.freitech.kotetsu.models.item.Item;
@@ -68,7 +65,7 @@ public class UnitPriceController extends SpringControllerBase2<UnitPrice> {
 	public String input(@PathVariable(required = false) Optional<Long> id, Model model) {
 		// 初期値あれば設定
 		id.ifPresent(i -> {
-			unitPriceReopsitory.findById(i).ifPresent(info -> {
+			unitPriceReopsitory.findByIdAndDeletedIsNull(i).ifPresent(info -> {
 				model.addAttribute(FORM_PARAM, info);
 			});
 		});
@@ -111,7 +108,7 @@ public class UnitPriceController extends SpringControllerBase2<UnitPrice> {
 	@GetMapping(value = {"/detail/{id}"})
 	public String detail(@PathVariable(required = true) Long id, Model model) {
 
-		unitPriceReopsitory.findById(id).ifPresent(info -> {
+		unitPriceReopsitory.findByIdAndDeletedIsNull(id).ifPresent(info -> {
 			model.addAttribute(FORM_PARAM, info);
 		});
 		return new PathBuilder().join(Path.UNITPRICE).detial().build();

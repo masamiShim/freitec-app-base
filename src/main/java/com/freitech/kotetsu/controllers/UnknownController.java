@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.freitech.kotetsu.db.repos.CustomerRepository;
+import com.freitech.kotetsu.db.repositories.CustomerRepository;
 import com.freitech.kotetsu.forms.customer.CustomerForm;
 
 
 @Controller
 @RequestMapping("customers")
-public class CustomerController extends ControllerBaseImpl<CustomerForm> {
+public class UnknownController extends ControllerBaseImpl<CustomerForm> {
 
     @Autowired
 	private CustomerRepository customerRepo;
@@ -25,7 +25,7 @@ public class CustomerController extends ControllerBaseImpl<CustomerForm> {
 	/**
 	 * コンストラクタ
 	 */
-	public CustomerController(){
+	public UnknownController(){
 		//viewファイルまでのパスを指定
 		PREF = "customers";
 	}

@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
-import com.freitech.kotetsu.db.repos.EstimateRepository;
-import com.freitech.kotetsu.db.repos.specifications.EstimateSpecification;
-import com.freitech.kotetsu.exceptions.BussinessException;
+import com.freitech.kotetsu.db.repositories.EstimateRepository;
+import com.freitech.kotetsu.db.specifications.EstimateSpecification;
+import com.freitech.kotetsu.exceptions.BusinessException;
 import com.freitech.kotetsu.forms.estimate.EstimateSearchForm;
 import com.freitech.kotetsu.models.estimate.Estimate;
 import com.freitech.kotetsu.service.EstimateService;
@@ -44,7 +44,7 @@ public class EstimateServiceImpl implements EstimateService {
 		return estimateRepository.findById(id).map(exists -> {
 			exists.setPersistInfo(form);
 			return estimateRepository.save(exists);
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class EstimateServiceImpl implements EstimateService {
 		return estimateRepository.findById(id).map(exists -> {
 			exists.setDeleted(LocalDateTime.now());
 			return estimateRepository.save(exists) != null ? true : false;
-		}).orElseThrow(BussinessException::new);
+		}).orElseThrow(BusinessException::new);
 	}
 
 }

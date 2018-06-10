@@ -1,10 +1,9 @@
-package com.freitech.kotetsu.service.impl;
+package com.freitech.kotetsu.db.specifications;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import com.freitech.kotetsu.codes.ItemType;
-import com.freitech.kotetsu.db.repos.specifications.SpecificationBase;
 import com.freitech.kotetsu.models.item.Item;
 
 @Component

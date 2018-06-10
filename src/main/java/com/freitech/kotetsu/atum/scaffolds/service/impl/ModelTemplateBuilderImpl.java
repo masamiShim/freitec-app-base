@@ -1,9 +1,7 @@
 package com.freitech.kotetsu.atum.scaffolds.service.impl;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.freitech.kotetsu.atum.ModelItemList;

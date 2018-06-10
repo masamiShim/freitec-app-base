@@ -1,7 +1,5 @@
 package com.freitech.kotetsu.service;
 
-import java.util.Optional;
-
 public interface MasterServiceBase<T> {
 
 	/**

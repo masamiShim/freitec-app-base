@@ -1,4 +1,4 @@
-package com.freitech.kotetsu.db.repos;
+package com.freitech.kotetsu.db.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

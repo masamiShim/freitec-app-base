@@ -15,59 +15,214 @@
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('corpName', '企業名', ~{::#corpName})">
-				<input id="corpName" type="text" class="form-control col-md-7 col-xs-12"
-					th:field="*{corpName}" th:attr="readonly='__${readonly}__'"
-					placeholder="てすと株式会社" />
+				th:replace="/partials/inputPartial::input('attribute.corpName', '企業名', ~{::#corpName})">
+				<input id="corpName" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.corpName}"
+					th:attr="readonly='__${readonly}__'" placeholder="てすと株式会社" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('corpDispName', '企業表示名', ~{::#corpDispName})">
-				<input id="corpDispName" type="text" class="form-control col-md-7 col-xs-12"
-					th:field="*{corpDispName}" th:attr="readonly='__${readonly}__'"
-					placeholder="てすと" />
+				th:replace="/partials/inputPartial::input('attribute.corpDispName', '企業表示名', ~{::#corpDispName})">
+				<input id="corpDispName" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.corpDispName}"
+					th:attr="readonly='__${readonly}__'" placeholder="てすと" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('honorific', '敬称', ~{::#honorific})">
-				<input id="honorific" type="text" class="form-control col-md-7 col-xs-12"
-					th:field="*{honorific}" th:attr="readonly='__${readonly}__'"
-					placeholder="御中" />
+				th:replace="/partials/inputPartial::input('attribute.applyStartDate', '適用開始日', ~{::#applyStartDate})">
+				<input id="applyStartDate" type="date"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.applyStartDate}"
+					th:attr="readonly='__${readonly}__'" placeholder="yyyy/mm/dd" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('cutoffAfter', '請求月', ~{::#cutoffAfter})">
-				<input id="cutoffAfter" type="number" class="form-control col-md-7 col-xs-12"
-					th:field="*{cutoffAfter}" th:attr="readonly='__${readonly}__'"/>
+				th:replace="/partials/inputPartial::input('attribute.honorific', '敬称', ~{::#honorific})">
+				<input id="honorific" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.honorific}"
+					th:attr="readonly='__${readonly}__'" placeholder="御中" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('cutoffDays', '請求日', ~{::#cutoffDays})">
-				<input id="cutoffAfter" type="number" class="form-control col-md-7 col-xs-12"
-					th:field="*{cutoffAfter}" th:attr="readonly='__${readonly}__'"/>
+				th:replace="/partials/inputPartial::input('attribute.name.firstName', '代表名字', ~{::#firstName})">
+				<input id="firstName" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.name.firstName}"
+					th:attr="readonly='__${readonly}__'" placeholder="佐藤" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('type', '商品分類', ~{::#type})">
-				<select id="type" class="form-control col-md-7 col-xs-12"
-					th:field="*{type}" th:attr="readonly='__${readonly}__'">
-					<option th:each="type : ${types}" th:value="${type}"
-						th:text="${type.name}"></option>
+				th:replace="/partials/inputPartial::input('attribute.name.lastName', '代表名前', ~{::#lastName})">
+				<input id="lastName" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.name.lastName}"
+					th:attr="readonly='__${readonly}__'" placeholder="太郎" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.name.firstNameKana', '代表名字カナ', ~{::#firstNameKana})">
+				<input id="firstNameKana" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.name.firstNameKana}"
+					th:attr="readonly='__${readonly}__'" placeholder="サトウ" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.name.lastNameKana', '代表名前カナ', ~{::#lastNameKana})">
+				<input id="lastNameKana" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.name.lastNameKana}"
+					th:attr="readonly='__${readonly}__'" placeholder="タロウ" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.address.zipCode', '郵便番号', ~{::#zipCode})">
+				<input id="zipCode" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.address.zipCode}"
+					th:attr="readonly='__${readonly}__'" placeholder="000-0000" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.address.address1', '住所1', ~{::#address1})">
+				<input id="address1" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.address.address1}"
+					th:attr="readonly='__${readonly}__'" placeholder="都道府県" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.address.address2', '住所2', ~{::#address2})">
+				<input id="address2" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.address.address2}"
+					th:attr="readonly='__${readonly}__'" placeholder="市区町村" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.address.address3', '住所3', ~{::#address3})">
+				<input id="address3" type="text"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.address.address3}"
+					th:attr="readonly='__${readonly}__'" placeholder="マンション名など" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.contact.phone', '電話番号', ~{::#phone})">
+				<input id="phone" type="tel"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.contact.phone}"
+					th:attr="readonly='__${readonly}__'" placeholder="000-0000-0000" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.contact.fax', 'FAX', ~{::#fax})">
+				<input id="fax" type="tel"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.contact.fax}"
+					th:attr="readonly='__${readonly}__'" placeholder="000-0000-0000" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.contact.email', 'Email', ~{::#email})">
+				<input id="email" type="email"
+					class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.contact.email}"
+					th:attr="readonly='__${readonly}__'" placeholder="example@mail.com" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.billing.cutoffAfter', '請求月', ~{::#cutoffAfter})">
+				<select id="cutoffAfter" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.billing.cutoffAfter}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="cutoffAfter : ${cutoffAfter}"
+						th:value="${cutoffAfter}" th:text="${cutoffAfter.name}"></option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
 			<div
-				th:replace="/partials/inputPartial::input('unit', '単位', ~{::#unit})">
-				<select id="unit" class="form-control col-md-7 col-xs-12"
-					th:field="*{unit}" th:attr="readonly='__${readonly}__'">
-					<option th:each="unit : ${units}" th:value="${unit}"
-						th:text="${unit.name}"></option>
+				th:replace="/partials/inputPartial::input('attribute.billing.cutoffDay', '請求日', ~{::#cutoffDay})">
+				<select id="cutoffDay" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.billing.cutoffDay}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="cutoffDay : ${cutoffDay}" th:value="${cutoffDay}"
+						th:text="${cutoffDay.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+
+			<div
+				th:replace="/partials/inputPartial::input('attribute.billing.cutoffRounding', '丸め', ~{::#cutoffRounding})">
+				<select id="cutoffRounding" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.billing.cutoffRounding}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="item : ${rounding}" th:value="${item}"
+						th:text="${item.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.payment.paymentAfter', '支払月', ~{::#paymentAfter})">
+				<select id="paymentAfter" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.payment.paymentAfter}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="paymentAfter : ${paymentAfter}"
+						th:value="${paymentAfter}" th:text="${paymentAfter.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.payment.paymentDay', '支払日', ~{::#paymentDay})">
+				<select id="paymentDay" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.payment.paymentDay}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="paymentDay : ${paymentDay}"
+						th:value="${paymentDay}" th:text="${paymentDay.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.payment.paymentRounding', '丸め', ~{::#paymentRounding})">
+				<select id="paymentRounding" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.payment.paymentRounding}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="item : ${rounding}" th:value="${item}"
+						th:text="${item.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div
+				th:replace="/partials/inputPartial::input('attribute.includeTax', '税処理', ~{::#includeTax})">
+				<select id="includeTax" class="form-control col-md-7 col-xs-12"
+					th:field="*{attribute.includeTax}"
+					th:attr="readonly='__${readonly}__'">
+					<option th:each="item : ${includeTax}" th:value="${item}"
+						th:text="${item.name}"></option>
 				</select>
 			</div>
 		</div>

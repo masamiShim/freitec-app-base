@@ -9,10 +9,10 @@
 			<div
 				th:replace="/partials/inputPartial::input('customer', '顧客', ~{::#customer})">
 				<select id="customer" class="form-control col-md-7 col-xs-12"
-					th:field="*{customer}">
+					th:field="*{customer}" th:attr="readonly='__${readonly}__'">
 					<option value=""></option>
 					<option th:each="customer : ${customers}" th:value="${customer.id}"
-						th:text="${customer.getLatestAttribute(#Date.now()).cormName}"></option>
+						th:text="${customer.attributes.corpName}"></option>
 				</select>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 			<div
 				th:replace="/partials/inputPartial::input('item', '商品', ~{::#item})">
 				<select id="item" class="form-control col-md-7 col-xs-12"
-					th:field="*{item}">
+					th:field="*{item}" th:attr="readonly='__${readonly}__'">
 					<option value=""></option>
 					<option th:each="item : ${items}" th:value="${item.id}"
 						th:text="${item.name}"></option>

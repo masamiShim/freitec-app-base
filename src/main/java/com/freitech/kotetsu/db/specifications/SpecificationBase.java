@@ -1,4 +1,4 @@
-package com.freitech.kotetsu.db.repos.specifications;
+package com.freitech.kotetsu.db.specifications;
 
 import org.springframework.data.jpa.domain.Specification;
 

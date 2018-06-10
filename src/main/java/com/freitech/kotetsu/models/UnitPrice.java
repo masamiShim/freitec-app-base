@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.freitech.kotetsu.models.customer.Customer;
 import com.freitech.kotetsu.models.item.Item;
 
@@ -25,15 +27,15 @@ import lombok.ToString;
  */
 @Data
 @Entity
-@ToString
-@EqualsAndHashCode(callSuper = false)
+@ToString(exclude = {"item", "customer"})
+@EqualsAndHashCode(exclude = {"item", "customer"}, callSuper = false)
 @Table(name = "UnitPrice")
 public class UnitPrice extends SecurityAuditor implements PriceBase {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "unitPriceId")
+	@Column(name = "UnitPriceId")
 	private Long id;
 
 	@NotNull
@@ -44,15 +46,16 @@ public class UnitPrice extends SecurityAuditor implements PriceBase {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer customer;
 
-	@Column(name = "resume")
+	@Column(name = "Resume")
 	private String resume;
 
 	@NotNull
-	@Column(name = "price")
+	@Column(name = "Price")
 	private BigDecimal price;
 
 	@NotNull
-	@Column(name = "appliedDate")
+	@Column(name = "AppliedDate")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate appliedDate;
 
 	public void setPersistInfo(UnitPrice other) {

@@ -27,7 +27,7 @@
 							<select id="customer" class="form-control col-md-7 col-xs-12"
 								th:field="*{customer}">
 								<option th:each="customer : ${customers}" th:value="${customer.id}"
-									th:text="${customer.getLatestAttribute(#Date.now()).cormName}"></option>
+									th:text="${customer.attributes.corpName}"></option>
 							</select>
 						</div>
 					</div>
@@ -97,10 +97,10 @@
 							<th:block th:each="item, stat : ${result}" th:object="${item}">
 								<tr role="row" th:class="${stat.even} ? 'even' : 'odd'">
 									<td class="sorting_1" tabindex="0"><label th:text="*{id}">a</label></td>
-									<td><label th:text="*{cutomerName}">b</label></td>
-									<td><label th:text="*{itemName}">c</label></td>
-									<td><label th:text="*{unitPrice}">d</label></td>
-									<td><label th:text="*{unit}">e</label></td>
+									<td><label th:text="*{customer.attributes.corpName}">b</label></td>
+									<td><label th:text="*{item.name}">c</label></td>
+									<td><label th:text="*{price}">d</label></td>
+									<td><label th:text="*{item.unit.name}">e</label></td>
 									<td><a class="btn btn-round btn-info" title="照会"
 										th:href="@{'/master/unitprice/detail/' + *{id}}"><i
 											class="fa fa-file-text-o"></i></a> <a
