@@ -23,22 +23,22 @@ import lombok.extern.slf4j.Slf4j;
 @Service(value = "CoincheckApi")
 @Slf4j
 public class CoincheckApiImpl implements ExchangeTemplateFactoryService {
-	@Value(value = "${api.exchange.coincheck.key.apiKey}")
+	@Value(value = "${api.exchange.coincheck.key.apiKey:}")
 	private String apiKey;
 
-	@Value(value = "${api.exchange.coincheck.key.secretKey}")
+	@Value(value = "${api.exchange.coincheck.key.secretKey:}")
 	private String secretKey;
 
-	@Value(value = "${api.exchange.coincheck.url.base}")
+	@Value(value = "${api.exchange.coincheck.url.base:}")
 	private String baseUrl;
 
-	@Value(value = "${api.exchange.coincheck.url.transaction}")
+	@Value(value = "${api.exchange.coincheck.url.transaction:}")
 	private String transUrl;
 
-	@Value(value = "${api.exchange.coincheck.url.balance}")
+	@Value(value = "${api.exchange.coincheck.url.balance:}")
 	private String balanceUrl;
 
-	@Value(value = "${api.exchange.coincheck.url.trades}")
+	@Value(value = "${api.exchange.coincheck.url.trades:}")
 	private String tradeUrl;
 
 	private HttpHeaders getRequestHeader(String url) {

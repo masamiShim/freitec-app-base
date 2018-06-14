@@ -25,12 +25,33 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+#mail送信
+  mail:
+    default-encoding: utf-8
+    host: smtp.gmail.com
+    port: 587
+    username: 
+    password:
+    properties:
+      mail.smtp.auth: true
+      starttls.enable: true
+#mail受信
+      
+      
+#jms
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest      
+        
 logging:
   file: logfile.log
   path: /
   
 server: 
   port: 8081 
+
 
 com:
   freitech:
@@ -44,8 +65,8 @@ api:
   exchange:
     coincheck:
       key:
-        apiKey: JjVINiHVY3Sf6eHO
-        secretKey: dftLyjDDBpJfK1iBu_U6XIBwOQNv4x7A
+        apiKey:
+        secretKey:
       url:
         base: https://coincheck.com
         transaction: /api/exchange/orders/transactions

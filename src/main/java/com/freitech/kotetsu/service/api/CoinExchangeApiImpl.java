@@ -14,28 +14,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service(value = "CoinexchangeApi")
 public class CoinExchangeApiImpl implements ExchangeTemplateFactoryService {
-	@Value(value = "${api.exchange.coinExchange.version}")
+	@Value(value = "${api.exchange.coinExchange.version:}")
 	private String version;
 
-	@Value(value = "${api.exchange.coinExchange.url.base}")
+	@Value(value = "${api.exchange.coinExchange.url.base:}")
 	private String baseUrl;
 
-	@Value(value = "${api.exchange.coinExchange.url.market}")
+	@Value(value = "${api.exchange.coinExchange.url.market:}")
 	private String marketUrl;
 
-	@Value(value = "${api.exchange.coinExchange.url.marketSummaries}")
+	@Value(value = "${api.exchange.coinExchange.url.marketSummaries:}")
 	private String marketSumsUrl;
 
-	@Value(value = "${api.exchange.coinExchange.url.marketSummary}")
+	@Value(value = "${api.exchange.coinExchange.url.marketSummary:}")
 	private String marketSumUrl;
 
-	@Value(value = "${api.exchange.coinExchange.url.orderBook}")
+	@Value(value = "${api.exchange.coinExchange.url.orderBook:}")
 	private String orderBookUrl;
 
-	@Value(value = "${api.exchange.coinExchange.url.currencies}")
+	@Value(value = "${api.exchange.coinExchange.url.currencies:}")
 	private String currenciesUrl;
 
-	@Value(value = "${api.exchange.coinExchange.url.currency}")
+	@Value(value = "${api.exchange.coinExchange.url.currency:}")
 	private String currencyUrl;
 
 	@Override

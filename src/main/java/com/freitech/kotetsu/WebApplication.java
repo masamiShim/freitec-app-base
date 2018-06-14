@@ -1,5 +1,6 @@
 package com.freitech.kotetsu;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +25,7 @@ import com.freitech.kotetsu.config.converter.LocalDateSpringConverter;
 import com.freitech.kotetsu.config.converter.LocalDateTimeSpringConverter;
 
 @SpringBootApplication
-@PropertySource(value = { "classpath:application.yml" })
+@PropertySource(value = {"classpath:application.yml"})
 public class WebApplication extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
 	private ApplicationContext applicationContext;
@@ -80,5 +81,6 @@ public class WebApplication extends WebMvcConfigurerAdapter implements Applicati
 		resolver.setTemplateMode(TemplateMode.HTML);
 		return resolver;
 	}
+
 
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="include/layout">
+<head>
+<title>test</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="layout-title">
+		<div class="col-sm-offset-2 col-sm-10">
+			<h1>メール一覧画面</h1>
+		</div>
+	</th:block>
+	<th:block layout:fragment="layout-content">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="table-responsive col-sm-12" style="height: 300px;">
+				<div
+					th:if="${receives != null and not #lists.isEmpty(receives.list)}"
+					class="col-sm-12">
+					検索結果：<label th:text="${#lists.size(receives.list)} + ' 件'">0</label>
+				</div>
+				<table class="table inverse table-striped table-condensed">
+					<thead style="background-color: black; color: white;">
+						<tr>
+							<td class="col-sm-1">#</td>
+							<td class="col-sm-1">送信者</td>
+							<td class="col-sm-2">受信日</td>
+							<td class="col-sm-3">タイトル</td>
+							<td class="col-sm-3">内容</td>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="item, stat : ${receives.list}" th:object="${item}">
+							<tr role="row" th:class="${stat.even} ? 'even' : 'odd'">
+								<td class="sorting_1" tabindex="0"><label th:text="${stat.index}">1</label></td>
+								<td><label th:text="*{sender}">b</label></td>
+								<td><label th:text="*{receiveDate}">c</label></td>
+								<td><label th:text="*{title}">c</label></td>
+								<td><label th:text="*{contents}">c</label></td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

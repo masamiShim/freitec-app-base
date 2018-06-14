@@ -52,6 +52,30 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
+		<!-- mail -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<artifactId>spring-integration-mail</artifactId>
+			<groupId>spring-integration-mail</groupId>
+			<version>4.3.10.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<!-- AMQP -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
 		<!-- validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -151,14 +175,22 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.scala-lang</groupId> -->
-<!-- 			<artifactId>scala-library</artifactId> -->
-<!-- 			<version>${scala.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.scala-lang</groupId> -->
+		<!-- <artifactId>scala-library</artifactId> -->
+		<!-- <version>${scala.version}</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-artemis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mail</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -171,22 +203,22 @@
 					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>net.alchim31.maven</groupId> -->
-<!-- 				<artifactId>scala-maven-plugin</artifactId> -->
-<!-- 				<version>3.2.0</version> -->
-<!-- 				<configuration> -->
-<!-- 					<scalaVersion>${scala.version}</scalaVersion> -->
-<!-- 					<args> -->
-<!-- 						<arg>-Xlint</arg> -->
-<!-- 						<arg>-unchecked</arg> -->
-<!-- 						<arg>-deprecation</arg> -->
-<!-- 						<arg>-feature</arg> -->
-<!-- 					</args> -->
-<!-- 					<skipTests>true</skipTests> -->
-<!-- 					<recompileMode>incremental</recompileMode> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>net.alchim31.maven</groupId> -->
+			<!-- <artifactId>scala-maven-plugin</artifactId> -->
+			<!-- <version>3.2.0</version> -->
+			<!-- <configuration> -->
+			<!-- <scalaVersion>${scala.version}</scalaVersion> -->
+			<!-- <args> -->
+			<!-- <arg>-Xlint</arg> -->
+			<!-- <arg>-unchecked</arg> -->
+			<!-- <arg>-deprecation</arg> -->
+			<!-- <arg>-feature</arg> -->
+			<!-- </args> -->
+			<!-- <skipTests>true</skipTests> -->
+			<!-- <recompileMode>incremental</recompileMode> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
 		</plugins>
 	</build>
 
